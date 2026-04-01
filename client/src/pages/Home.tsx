@@ -12,7 +12,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 const LOGO_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/logo-dark-transparent_307fc080.png";
 const LOGO_WHITE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/logo-white_05b641bd.png";
 
-const IMG_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/hero-renaissance-ai-cLrMUwQm7BNWBHhHGb8wLX.webp";
+const IMG_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/hero-bust-premium-FpqSFyXSmQnq57kRh9QaWG.png";
 const IMG_DIAGNOSIS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/v4-diagnosis-iQXvovY3A7FcuYL2tr9Tkp.webp";
 const IMG_METHOD = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/v3-method-nb5249KgjJJ4mu2n2Yg5Sh.webp";
 const IMG_RESULTS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/v4-results-5fgesgkq39sf2hLTUESSB9.webp";
@@ -165,18 +165,23 @@ function HeroSection() {
             </motion.a>
           </motion.div>
 
-          {/* Hero Image — 7 cols — Busto flutuante, sem fundo */}
+          {/* Hero Image — 7 cols — Busto flutuante, integrado ao hero */}
           <motion.div
             style={{ y: imgY }}
-            className="lg:col-span-7 relative flex justify-center lg:justify-end"
+            className="lg:col-span-7 relative flex justify-center lg:justify-end items-end"
           >
             <motion.img
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.5 }}
+              transition={{ duration: 1.4, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
               src={IMG_HERO}
               alt="Proporção, estratégia e visão"
-              className="w-full max-w-[560px] lg:max-w-[600px] h-auto object-contain rounded-sm"
+              className="w-full max-w-[520px] lg:max-w-[640px] xl:max-w-[700px] h-auto object-contain"
+              style={{
+                filter: "drop-shadow(0 20px 40px rgba(28, 43, 69, 0.08)) drop-shadow(0 8px 16px rgba(28, 43, 69, 0.04))",
+                marginBottom: "-2rem",
+                marginRight: "-1rem",
+              }}
             />
           </motion.div>
         </div>
