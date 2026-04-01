@@ -12,7 +12,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 const LOGO_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/logo-dark-transparent_307fc080.png";
 const LOGO_WHITE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/logo-white_05b641bd.png";
 
-const IMG_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/hero-bust-final_c16f9191.png";
+const IMG_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/hero-renaissance-ai-cLrMUwQm7BNWBHhHGb8wLX.webp";
 const IMG_DIAGNOSIS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/v4-diagnosis-iQXvovY3A7FcuYL2tr9Tkp.webp";
 const IMG_METHOD = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/v3-method-nb5249KgjJJ4mu2n2Yg5Sh.webp";
 const IMG_RESULTS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663180812128/mSLj88L6JcEvM5nxpGCtTt/v4-results-5fgesgkq39sf2hLTUESSB9.webp";
@@ -128,7 +128,7 @@ function HeroSection() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.6 }}
-              className="heading-xl text-charcoal text-[2.5rem] md:text-[3.2rem] lg:text-[3.6rem]"
+              className="heading-xl text-[#1A1A1A] text-[2.5rem] md:text-[3.2rem] lg:text-[3.6rem]"
             >
               Marcas fortes não
               <br />disputam atenção.
@@ -148,7 +148,7 @@ function HeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 1.1 }}
-              className="body-lg text-stone-brand max-w-md mb-10"
+              className="body-lg text-[#444444] max-w-md mb-10"
             >
               Posicionamento, identidade e estratégia para empresas que querem ser percebidas pelo valor que realmente entregam.
             </motion.p>
@@ -176,7 +176,7 @@ function HeroSection() {
               transition={{ duration: 1.2, delay: 0.5 }}
               src={IMG_HERO}
               alt="Proporção, estratégia e visão"
-              className="w-full max-w-[700px] lg:max-w-none lg:w-[110%] h-auto object-contain drop-shadow-[0_20px_60px_rgba(28,43,69,0.08)]"
+              className="w-full max-w-[560px] lg:max-w-[600px] h-auto object-contain rounded-sm"
             />
           </motion.div>
         </div>
