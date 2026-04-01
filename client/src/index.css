@@ -4,13 +4,13 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * VirtruvIA — Paleta v4 Corrigida
- * Off-white frio: #F8F7F5
- * Navy profundo:  #1C2B45
- * Âmbar/Dourado:  #B8865A
- * Azul marca:     #859BA4
- * Stone:          #8B847D
- * Charcoal:       #2C2C2C
+ * VirtruvIA — Paleta Oficial
+ * Stone:  #8B847D
+ * Bronze: #B07345
+ * Nude:   #DBC2B4
+ * Blue:   #859BA4
+ * Charcoal: #2C2C2C
+ * White:  #FAFAF8
  */
 
 @theme inline {
@@ -38,17 +38,17 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Brand Colors — v4 */
+  /* Brand Colors */
   --color-stone-brand: oklch(0.59 0.02 70);
-  --color-bronze: oklch(0.60 0.12 60);
+  --color-bronze: oklch(0.56 0.1 55);
   --color-bronze-light: oklch(0.72 0.08 55);
+  --color-nude: oklch(0.82 0.03 60);
+  --color-nude-light: oklch(0.92 0.015 60);
   --color-blue-brand: oklch(0.66 0.04 230);
   --color-blue-deep: oklch(0.55 0.05 230);
-  --color-navy: oklch(0.25 0.06 250);
   --color-charcoal: oklch(0.25 0.005 60);
   --color-charcoal-light: oklch(0.35 0.005 60);
-  --color-off-white: oklch(0.975 0.002 90);
-  --color-warm-white: oklch(0.975 0.002 90);
+  --color-warm-white: oklch(0.98 0.003 90);
 
   /* Font families */
   --font-display: "Playfair Display", Georgia, serif;
@@ -58,25 +58,25 @@
 
 :root {
   --radius: 0.25rem;
-  --background: oklch(0.975 0.002 90);
+  --background: oklch(0.98 0.003 90);
   --foreground: oklch(0.25 0.005 60);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.25 0.005 60);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.25 0.005 60);
-  --primary: oklch(0.60 0.12 60);
-  --primary-foreground: oklch(0.975 0.002 90);
-  --secondary: oklch(0.96 0.005 90);
+  --primary: oklch(0.56 0.1 55);
+  --primary-foreground: oklch(0.98 0.003 90);
+  --secondary: oklch(0.92 0.015 60);
   --secondary-foreground: oklch(0.35 0.005 60);
-  --muted: oklch(0.94 0.005 90);
+  --muted: oklch(0.94 0.01 60);
   --muted-foreground: oklch(0.55 0.02 60);
   --accent: oklch(0.66 0.04 230);
-  --accent-foreground: oklch(0.975 0.002 90);
+  --accent-foreground: oklch(0.98 0.003 90);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.90 0.005 90);
-  --input: oklch(0.90 0.005 90);
-  --ring: oklch(0.60 0.12 60);
+  --border: oklch(0.88 0.01 60);
+  --input: oklch(0.88 0.01 60);
+  --ring: oklch(0.56 0.1 55);
 }
 
 @layer base {
@@ -84,7 +84,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-off-white text-charcoal;
+    @apply bg-warm-white text-charcoal;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -177,26 +177,6 @@
     height: 2px;
     background-color: var(--color-bronze);
   }
-
-  /* CTA Button — Navy with amber hover */
-  .btn-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background-color: var(--color-navy);
-    color: #FFFFFF;
-    padding: 1rem 2rem;
-    font-family: var(--font-body);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-  .btn-cta:hover {
-    background-color: var(--color-bronze);
-    color: #FFFFFF;
-  }
 }
 
 /* Smooth scroll */
@@ -206,6 +186,6 @@ html {
 
 /* Selection */
 ::selection {
-  background-color: oklch(0.25 0.06 250 / 0.15);
+  background-color: oklch(0.56 0.1 55 / 0.15);
   color: oklch(0.25 0.005 60);
 }
