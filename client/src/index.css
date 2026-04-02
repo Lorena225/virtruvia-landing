@@ -48,7 +48,7 @@
   --color-blue-deep: oklch(0.55 0.05 230);
   --color-charcoal: oklch(0.25 0.005 60);
   --color-charcoal-light: oklch(0.35 0.005 60);
-  --color-warm-white: oklch(0.98 0.003 90);
+  --color-warm-white: #F8F7F5;
 
   /* Font families */
   --font-display: "Playfair Display", Georgia, serif;

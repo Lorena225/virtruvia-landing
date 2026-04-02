@@ -271,7 +271,7 @@ function DiagnosticSection() {
    ═══════════════════════════════════════════ */
 function DifferentialSection() {
   return (
-    <section className="py-24 md:py-32 bg-[#2C2C2C]">
+    <section className="py-24 md:py-32 bg-[#1C2B45]">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
           {/* Left — Statement */}
@@ -393,7 +393,7 @@ function MethodSection() {
 }
 
 /* ═══════════════════════════════════════════
-   6. SOLUÇÕES — 5 produtos em sequência vertical
+   6. SOLUÇÕES — 5 produtos em grid de cards (3+2)
    ═══════════════════════════════════════════ */
 function SolutionsSection() {
   const products = [
@@ -402,9 +402,8 @@ function SolutionsSection() {
       tag: "PROJETO ÚNICO",
       name: "Diagnóstico 360° VirtruvIA",
       forWhom: "Para quem precisa enxergar a base com clareza",
-      description: "Diagnóstico estratégico da marca, da presença digital e da percepção de mercado para identificar distorções, lacunas e prioridades de correção.",
-      deliverables: ["Imersão executiva", "Auditoria de percepção e mercado", "Benchmark de concorrentes", "Mapa de lacunas", "Relatório executivo", "Devolutiva estratégica"],
-      cta: "Quero meu diagnóstico",
+      description: "Diagnóstico estratégico da marca, presença digital e percepção de mercado para identificar distorções, lacunas e prioridades de correção.",
+      deliverables: "Imersão executiva • Auditoria de percepção e mercado • Benchmark de concorrentes • Mapa de lacunas • Relatório executivo • Devolutiva estratégica",
       featured: false,
     },
     {
@@ -413,8 +412,7 @@ function SolutionsSection() {
       name: "Direção de Marca",
       forWhom: "Para quem precisa de posicionamento e coerência",
       description: "Estruturação completa da direção da marca para alinhar discurso, identidade e percepção ao momento real de crescimento do negócio.",
-      deliverables: ["Posicionamento e território de marca", "Narrativa institucional", "Plataforma verbal", "Diretrizes visuais", "Brandbook", "Manual de marca"],
-      cta: "Quero estruturar minha marca",
+      deliverables: "Posicionamento e território de marca • Narrativa institucional • Plataforma verbal • Diretrizes visuais • Brandbook • Manual de marca",
       featured: false,
     },
     {
@@ -423,8 +421,7 @@ function SolutionsSection() {
       name: "Marca e Estruturação Comercial",
       forWhom: "Para quem precisa transformar marca em argumento de venda",
       description: "Reposicionamento com foco comercial para fortalecer proposta de valor, sustentar preço e organizar o discurso de vendas da empresa.",
-      deliverables: ["Tudo da Direção de Marca", "Proposta de valor comercial", "Estrutura de argumentação", "Pitch e roteiro comercial", "Objeções e respostas", "Treinamento da equipe"],
-      cta: "Quero fortalecer meu comercial",
+      deliverables: "Tudo da Direção de Marca • Proposta de valor comercial • Estrutura de argumentação • Pitch e roteiro comercial • Objeções e respostas • Treinamento da equipe",
       featured: true,
     },
     {
@@ -433,133 +430,109 @@ function SolutionsSection() {
       name: "Gestão de Presença",
       forWhom: "Para quem já tem estratégia e precisa de execução contínua",
       description: "Gestão mensal da comunicação para sustentar presença, autoridade e consistência da marca no dia a dia.",
-      deliverables: ["Planejamento editorial estratégico", "Conteúdo de autoridade", "Gestão de presença digital", "Copy e direção criativa", "Governança operacional", "Relatórios e ajustes"],
-      cta: "Quero gerir minha presença",
+      deliverables: "Planejamento editorial estratégico • Conteúdo de autoridade • Gestão de presença digital • Copy e direção criativa • Governança operacional • Relatórios e ajustes",
       featured: false,
     },
     {
       num: "05",
       tag: "SETUP + ACOMPANHAMENTO MENSAL",
       name: "Performance de Crescimento",
-      forWhom: "Para quem quer escalar com mais inteligência e controle",
-      description: "Operação avançada de performance para ampliar aquisição, melhorar a eficiência da mídia e acelerar crescimento com base em leitura estratégica de dados.",
-      deliverables: ["Planejamento de campanhas", "Meta Ads e Google Ads", "Captação e remarketing", "Reaproveitamento de audiência", "Otimização contínua", "Relatórios executivos"],
-      cta: "Quero escalar meu crescimento",
+      forWhom: "Para quem quer escalar com inteligência e controle",
+      description: "Operação avançada de performance para ampliar aquisição, melhorar eficiência da mídia e acelerar crescimento com base em dados estratégicos.",
+      deliverables: "Planejamento de campanhas • Meta Ads e Google Ads • Captação e remarketing • Reaproveitamento de audiência • Otimização contínua • Relatórios executivos",
       featured: false,
     },
   ];
 
+  const row1 = products.slice(0, 3);
+  const row2 = products.slice(3, 5);
+
   return (
-    <section className="py-24 md:py-32 bg-nude-light">
+    <section className="py-24 md:py-32 bg-[#F8F7F5]">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <Fade>
           <p className="label-sm text-bronze mb-5">Soluções</p>
           <h2 className="heading-lg text-charcoal text-2xl md:text-3xl lg:text-[2.2rem] max-w-2xl mb-6">
             Cada empresa está em um momento. Existe um caminho para o seu.
           </h2>
-          <p className="body-lg text-stone-brand max-w-2xl mb-20">
-            Cinco soluções desenhadas para estágios diferentes de maturidade de marca. Sem pacotes genéricos. Sem execução sem estratégia.
+          <p className="body-lg text-stone-brand max-w-2xl mb-16">
+            Cinco soluções para estágios diferentes de maturidade de marca. Sem pacotes genéricos.
           </p>
         </Fade>
 
-        <div className="space-y-0">
-          {products.map((product, index) => {
-            const isEven = index % 2 !== 0;
-            const isLast = index === products.length - 1;
+        {/* Row 1: 3 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          {row1.map((product, i) => (
+            <Fade key={product.num} delay={i * 0.08}>
+              <SolutionCard product={product} />
+            </Fade>
+          ))}
+        </div>
 
-            return (
-              <div key={product.num}>
-                <Fade delay={index * 0.06}>
-                  <div
-                    className={`relative p-8 md:p-10 lg:p-12 transition-all duration-500 ${
-                      product.featured
-                        ? "bg-warm-white border-2 border-blue-brand/20 shadow-lg shadow-blue-brand/5"
-                        : "bg-transparent border border-stone-brand/8 hover:bg-warm-white hover:shadow-md hover:shadow-stone-brand/5"
-                    }`}
-                  >
-                    {product.featured && (
-                      <div className="absolute top-0 left-0 right-0 h-[3px] bg-blue-brand" />
-                    )}
-                    {product.featured && (
-                      <div className="absolute top-4 right-6 md:right-10">
-                        <span className="label-sm text-blue-brand bg-blue-brand/8 px-3 py-1.5 tracking-[0.15em]">Recomendado</span>
-                      </div>
-                    )}
-
-                    <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start ${
-                      isEven ? "lg:direction-rtl" : ""
-                    }`}>
-                      {/* Text side */}
-                      <div className={`lg:col-span-6 ${
-                        isEven ? "lg:order-2" : "lg:order-1"
-                      }`}>
-                        <div className="flex items-start gap-5 mb-5">
-                          <span className="font-display text-[2.8rem] md:text-[3.2rem] leading-none font-medium text-bronze/80">
-                            {product.num}
-                          </span>
-                          <div className="pt-2">
-                            <p className="label-sm text-blue-brand mb-2">{product.tag}</p>
-                            <h3 className="heading-md text-charcoal text-xl md:text-2xl">
-                              {product.name}
-                            </h3>
-                          </div>
-                        </div>
-
-                        <p className="font-serif text-stone-brand/60 text-sm italic mb-5">
-                          {product.forWhom}
-                        </p>
-
-                        <p className="body-md text-stone-brand/80">
-                          {product.description}
-                        </p>
-                      </div>
-
-                      {/* Deliverables side */}
-                      <div className={`lg:col-span-6 ${
-                        isEven ? "lg:order-1" : "lg:order-2"
-                      }`}>
-                        <div className="lg:pl-8 lg:border-l border-stone-brand/8">
-                          <p className="label-sm text-stone-brand/50 mb-5">Entregáveis</p>
-                          <div className="space-y-3">
-                            {product.deliverables.map((item, i) => (
-                              <div key={i} className="flex items-start gap-3">
-                                <div className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${
-                                  product.featured ? "bg-blue-brand" : "bg-bronze"
-                                }`} />
-                                <span className="text-stone-brand/70 text-sm">{item}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          <a
-                            href="#agendar"
-                            className={`inline-flex items-center gap-2 mt-8 text-sm font-medium transition-colors group ${
-                              product.featured
-                                ? "text-blue-brand hover:text-charcoal"
-                                : "text-bronze hover:text-charcoal"
-                            }`}
-                          >
-                            {product.cta}
-                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Fade>
-
-                {/* Progression line between products */}
-                {!isLast && (
-                  <div className="flex justify-center py-1">
-                    <div className="w-[1px] h-8 bg-stone-brand/15" />
-                  </div>
-                )}
-              </div>
-            );
-          })}
+        {/* Row 2: 2 cards centered */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {row2.map((product, i) => (
+            <Fade key={product.num} delay={(i + 3) * 0.08}>
+              <SolutionCard product={product} />
+            </Fade>
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function SolutionCard({ product }: { product: { num: string; tag: string; name: string; forWhom: string; description: string; deliverables: string; featured: boolean } }) {
+  return (
+    <div
+      className={`relative bg-white p-8 md:p-9 h-full flex flex-col transition-all duration-500 hover:shadow-lg hover:shadow-stone-brand/5 ${
+        product.featured
+          ? "border-t-[4px] border-t-[#1C2B45] border-x border-b border-stone-brand/10 shadow-md shadow-stone-brand/5"
+          : "border border-stone-brand/10"
+      }`}
+    >
+      {/* Number + Tag */}
+      <div className="flex items-center justify-between mb-6">
+        <span className="font-display text-3xl font-medium text-bronze/70">{product.num}</span>
+        <span className="label-sm text-blue-brand tracking-[0.15em]" style={{ fontSize: '0.6rem' }}>{product.tag}</span>
+      </div>
+
+      {/* Name */}
+      <h3 className="font-display text-charcoal text-lg md:text-xl font-semibold mb-3 leading-tight">
+        {product.name}
+      </h3>
+
+      {/* For whom */}
+      <p className="font-serif text-stone-brand/55 text-sm italic mb-5">
+        {product.forWhom}
+      </p>
+
+      {/* Description */}
+      <p className="body-md text-stone-brand/75 mb-6 flex-grow">
+        {product.description}
+      </p>
+
+      {/* Deliverables */}
+      <div className="border-t border-stone-brand/8 pt-5 mb-6">
+        <p className="label-sm text-stone-brand/40 mb-3" style={{ fontSize: '0.6rem' }}>Entregáveis</p>
+        <p className="text-stone-brand/60 text-xs leading-relaxed">
+          {product.deliverables}
+        </p>
+      </div>
+
+      {/* CTA */}
+      <a
+        href="#agendar"
+        className={`inline-flex items-center gap-2 text-sm font-medium transition-colors group mt-auto ${
+          product.featured
+            ? "text-[#1C2B45] hover:text-bronze"
+            : "text-bronze hover:text-charcoal"
+        }`}
+      >
+        Saiba mais
+        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+      </a>
+    </div>
   );
 }
 
@@ -646,7 +619,7 @@ function ResultsSection() {
    ═══════════════════════════════════════════ */
 function CTASection() {
   return (
-    <section id="agendar" className="py-28 md:py-36 bg-[#2C2C2C] relative overflow-hidden">
+    <section id="agendar" className="py-28 md:py-36 bg-[#1C2B45] relative overflow-hidden">
       {/* Subtle texture */}
       <div className="absolute inset-0 opacity-[0.025]" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
@@ -686,7 +659,7 @@ function CTASection() {
    ═══════════════════════════════════════════ */
 function FooterSection() {
   return (
-    <footer className="py-12 bg-charcoal">
+    <footer className="py-12 bg-[#1C2B45]">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col md:flex-row items-center justify-between gap-5">
           <img src={LOGO_WHITE} alt="VirtruvIA" className="h-7 w-auto opacity-50" />
