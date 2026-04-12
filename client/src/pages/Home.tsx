@@ -536,8 +536,8 @@ function VantagensSection() {
         <div className="grid md:grid-cols-3 gap-8">
           {benefits.map((b, i) => (
             <Fade key={b.title} delay={i * 0.1}>
-              <div className="bg-gray-50 p-8 rounded-2xl hover:shadow-md transition-all border border-gray-100 hover:border-[#0068D4]/20 group">
-                <div className="text-5xl mb-5">{b.icon}</div>
+              <div className="bg-gray-50 p-8 rounded-2xl hover:shadow-md transition-all border border-gray-100 hover:border-[#0068D4]/20 group flex flex-col items-center text-center">
+                <div className="text-5xl mb-5 flex justify-center">{b.icon}</div>
                 <h3 className="text-xl font-black text-[#0068D4] mb-4">{b.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{b.desc}</p>
               </div>
