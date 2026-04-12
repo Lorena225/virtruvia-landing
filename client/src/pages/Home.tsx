@@ -32,28 +32,29 @@ function Fade({
 }
 
 /* ─── Course Data ─── */
-const COURSES = [
-  { name: "Técnico em Açúcar e Álcool", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Administração", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Agricultura", img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Agrimensura", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Agropecuária", img: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Contabilidade", img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Edificações", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Eletroeletrônica", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Eletromecânica", img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Eletrônica", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Eletrotécnica", img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Mecânica Industrial", img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Meio Ambiente", img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Mineração", img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Petróleo e Gás", img: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Química", img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Refrigeração e Climatização", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Secretário Escolar", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Segurança do Trabalho", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Telecomunicações", img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=260&fit=crop&auto=format" },
-  { name: "Técnico em Transações Imobiliárias", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=260&fit=crop&auto=format" },
+// Each entry has img (desktop 400×260) and imgSm (mobile 200×130, ~50% bytes)
+const COURSES: { name: string; img: string; imgSm: string }[] = [
+  { name: "Técnico em Açúcar e Álcool",           img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Administração",              img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Agricultura",                img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Agrimensura",                img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Agropecuária",               img: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Contabilidade",              img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Edificações",                img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletroeletrônica",           img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletromecânica",             img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletrônica",                 img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletrotécnica",              img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Mecânica Industrial",        img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Meio Ambiente",              img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Mineração",                  img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Petróleo e Gás",             img: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Química",                    img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Refrigeração e Climatização",img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Secretário Escolar",         img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Segurança do Trabalho",      img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Telecomunicações",           img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Transações Imobiliárias",    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200&h=130&fit=crop&auto=format&q=60" },
 ];
 
 /* ─── Testimonials ─── */
@@ -304,24 +305,33 @@ function HeroSection() {
 }
 
 /* ═══════════════════════════════════════════
-   CURSOS
+   CURSOS  (mobile-optimised carousel)
    ═══════════════════════════════════════════ */
 function CoursesSection() {
-  const trackRef = useRef<HTMLDivElement>(null);
+  const trackRef    = useRef<HTMLDivElement>(null);
+  const sectionRef  = useRef<HTMLElement>(null);
   const autoScrollRef = useRef<number | null>(null);
-  const isPausedRef = useRef(false);
-  const CARD_STEP = 280; // px per arrow click (≈ 1 card + gap)
-  const SPEED = 0.55;    // pixels per animation frame (slow & smooth)
+  const isPausedRef   = useRef(false);
+  const isVisibleRef  = useRef(false);
+
+  const CARD_STEP = 280;  // px per arrow click
+  const SPEED     = 0.55; // px per rAF frame
 
   // Duplicate list for seamless infinite loop
   const DOUBLED = [...COURSES, ...COURSES];
 
+  // ── Reduced-motion check (accessibility + battery)
+  const prefersReduced =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── rAF loop — only runs when section is in viewport
   const startAutoScroll = useCallback(() => {
+    if (prefersReduced) return; // skip animation if user prefers reduced motion
     const step = () => {
       const track = trackRef.current;
-      if (track && !isPausedRef.current) {
+      if (track && !isPausedRef.current && isVisibleRef.current) {
         track.scrollLeft += SPEED;
-        // When we reach the midpoint (second copy starts), jump back silently
         if (track.scrollLeft >= track.scrollWidth / 2) {
           track.scrollLeft = 0;
         }
@@ -329,15 +339,25 @@ function CoursesSection() {
       autoScrollRef.current = requestAnimationFrame(step);
     };
     autoScrollRef.current = requestAnimationFrame(step);
-  }, []);
+  }, [prefersReduced]);
 
   useEffect(() => {
+    // IntersectionObserver — pause rAF when section is off-screen (saves CPU/battery)
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
     startAutoScroll();
+
     return () => {
+      observer.disconnect();
       if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
     };
   }, [startAutoScroll]);
 
+  // ── Manual arrow navigation
   const scrollManual = (dir: "left" | "right") => {
     const track = trackRef.current;
     if (!track) return;
@@ -347,7 +367,13 @@ function CoursesSection() {
   };
 
   return (
-    <section id="cursos" className="py-20 md:py-28 bg-gray-50">
+    <section
+      id="cursos"
+      ref={sectionRef}
+      className="py-20 md:py-28 bg-gray-50"
+      // contain: layout style — isolates reflows to this subtree
+      style={{ contain: "layout style" }}
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-12">
@@ -361,7 +387,7 @@ function CoursesSection() {
           </div>
         </Fade>
 
-        {/* Carousel wrapper — relative for arrow positioning */}
+        {/* Carousel wrapper */}
         <div className="relative">
 
           {/* ← Arrow */}
@@ -402,7 +428,7 @@ function CoursesSection() {
           <div className="pointer-events-none absolute right-0 top-0 h-full w-14 z-10
             bg-gradient-to-l from-gray-50 to-transparent" />
 
-          {/* Scrollable track — no scrollbar */}
+          {/* Scrollable track */}
           <div
             ref={trackRef}
             onMouseEnter={() => { isPausedRef.current = true; }}
@@ -410,22 +436,51 @@ function CoursesSection() {
             onTouchStart={() => { isPausedRef.current = true; }}
             onTouchEnd={() => setTimeout(() => { isPausedRef.current = false; }, 2800)}
             className="overflow-x-auto pb-4 px-8"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              // GPU-composited scroll — eliminates main-thread jank
+              willChange: "scroll-position",
+              // Only intercept horizontal touch gestures
+              touchAction: "pan-x",
+            } as React.CSSProperties}
           >
-            <div className="flex gap-5" style={{ width: "max-content" }}>
+            <div
+              className="flex gap-5"
+              style={{
+                width: "max-content",
+                // Promote row to its own compositor layer
+                willChange: "transform",
+              }}
+            >
               {DOUBLED.map((course, i) => (
                 <div
                   key={`${course.name}-${i}`}
                   className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg
-                    transition-all duration-300 hover:-translate-y-1 cursor-pointer group flex-shrink-0"
-                  style={{ width: 255 }}
+                    transition-shadow duration-300 hover:-translate-y-1 cursor-pointer group flex-shrink-0"
+                  style={{
+                    width: 255,
+                    // Isolate each card's paint/layout from siblings
+                    contain: "layout style paint",
+                  }}
                 >
-                  <div className="relative overflow-hidden h-40">
+                  {/* Fixed-size image container prevents layout shift (CLS = 0) */}
+                  <div
+                    className="relative overflow-hidden"
+                    style={{ height: 160, background: "#e5e7eb" }}
+                  >
                     <img
-                      src={course.img}
+                      src={course.imgSm}          /* mobile-first: small src */
+                      srcSet={`${course.imgSm} 200w, ${course.img} 400w`}
+                      sizes="(max-width: 640px) 200px, 255px"
                       alt={course.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      width={255}
+                      height={160}
                       loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      style={{ willChange: "transform" }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00458A]/60 to-transparent" />
                     <span className="absolute top-3 left-3 bg-[#FF0000] text-white text-xs font-bold px-2 py-1 rounded">
