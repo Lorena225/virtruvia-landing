@@ -1,7 +1,7 @@
 /**
  * Matrícula EAD — Landing Page de Alta Conversão
  * Certificação por Competência — Art. 41 da Lei nº 9.394/96
- * Design: Clean & Bold | Azul Marinho #001F3F + Laranja #FF6B35 | Mobile First
+ * Design: Clean & Bold | Azul #00458A + Vermelho #FF0000 | Mobile First
  */
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
@@ -90,14 +90,15 @@ const WA_LINK =
   "https://api.whatsapp.com/send/?phone=556130261085&text=Ol%C3%A1%2C+venho+do+site+Matr%C3%ADcula+EaD+e+quero+mais+informa%C3%A7%C3%B5es+sobre+os+Cursos+EaD.&type=phone_number&app_absent=0";
 
 /* ─── CTA Button ─── */
-function CTAButton({ text, className = "" }: { text: string; className?: string }) {
+function CTAButton({ text, className = "", id }: { text: string; className?: string; id?: string }) {
   const scrollToForm = () => {
     document.getElementById("kommo-form")?.scrollIntoView({ behavior: "smooth" });
   };
   return (
     <button
+      id={id}
       onClick={scrollToForm}
-      className={`bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5 cursor-pointer ${className}`}
+      className={`bg-[#FF0000] hover:bg-[#cc0000] active:bg-[#aa0000] text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-red-200 hover:-translate-y-0.5 cursor-pointer uppercase tracking-wide text-sm ${className}`}
     >
       {text}
     </button>
@@ -109,7 +110,11 @@ function CTAButton({ text, className = "" }: { text: string; className?: string 
    ═══════════════════════════════════════════ */
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden" style={{ fontFamily: "'Inter', 'Poppins', system-ui, sans-serif" }}>
+    <div
+      className="min-h-screen bg-white overflow-x-hidden"
+      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+    >
+      <AnnouncementBar />
       <Header />
       <HeroSection />
       <CoursesSection />
@@ -127,6 +132,17 @@ export default function Home() {
 }
 
 /* ═══════════════════════════════════════════
+   ANNOUNCEMENT BAR
+   ═══════════════════════════════════════════ */
+function AnnouncementBar() {
+  return (
+    <div className="bg-[#00458A] text-white text-center py-2.5 px-4 text-sm font-medium">
+      Matrículas 100% digitais: Faça agora mesmo a sua inscrição.
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
    HEADER
    ═══════════════════════════════════════════ */
 function Header() {
@@ -135,19 +151,31 @@ function Header() {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="flex flex-col leading-none">
-              <span className="text-[#001F3F] font-black text-xl tracking-tight">Matrícula</span>
-              <span className="text-orange-500 font-bold text-xs tracking-widest uppercase">EAD</span>
-            </div>
-          </div>
+          <a href="https://matriculaead.com.br" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <img
+              src="https://matriculaead.com.br/wp-content/uploads/2024/01/logo-matricula-ead.png"
+              alt="Matrícula EAD"
+              className="h-10 w-auto"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = "none";
+                const parent = target.parentElement;
+                if (parent) {
+                  const fallback = document.createElement("div");
+                  fallback.className = "flex flex-col leading-none";
+                  fallback.innerHTML = `<span class="text-[#00458A] font-black text-xl tracking-tight">Matrícula</span><span class="text-[#FF0000] font-bold text-xs tracking-widest uppercase">EAD</span>`;
+                  parent.appendChild(fallback);
+                }
+              }}
+            />
+          </a>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-8 items-center">
             {[["#cursos", "Cursos"], ["#vantagens", "Vantagens"], ["#como-funciona", "Como Funciona"], ["#faq", "FAQ"]].map(([href, label]) => (
-              <a key={href} href={href} className="text-gray-600 hover:text-[#001F3F] font-medium text-sm transition-colors">
+              <a key={href} href={href} className="text-gray-600 hover:text-[#00458A] font-medium text-sm transition-colors">
                 {label}
               </a>
             ))}
@@ -158,7 +186,7 @@ function Header() {
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex bg-[#001F3F] hover:bg-[#002a52] text-white font-semibold py-2.5 px-6 rounded-lg text-sm transition-colors"
+              className="hidden md:inline-flex bg-[#FF0000] hover:bg-[#cc0000] text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-colors uppercase tracking-wide"
             >
               FALE AGORA
             </a>
@@ -180,7 +208,7 @@ function Header() {
                 {label}
               </a>
             ))}
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="block bg-[#001F3F] text-white text-center font-semibold py-3 px-6 rounded-lg mt-2">
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="block bg-[#FF0000] text-white text-center font-bold py-3 px-6 rounded-lg mt-2 uppercase tracking-wide">
               FALE AGORA
             </a>
           </div>
@@ -195,75 +223,80 @@ function Header() {
    ═══════════════════════════════════════════ */
 function HeroSection() {
   return (
-    <section className="bg-[#001F3F] py-20 md:py-28 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Text */}
-          <div>
-            <Fade>
-              <span className="inline-block bg-white/10 text-white/90 px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase mb-6">
-                Certificação por Competência
-              </span>
-            </Fade>
-            <Fade delay={0.05}>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.08] mb-6">
-                Seus anos de trabalho duro podem valer um{" "}
-                <span className="text-orange-400">Diploma Técnico Reconhecido.</span>
-              </h1>
-            </Fade>
-            <Fade delay={0.1}>
-              <p className="text-xl text-white/80 font-medium mb-4">
-                Chega de perder vagas, promoções ou o respeito profissional por não ter um diploma reconhecido!
-              </p>
-            </Fade>
-            <Fade delay={0.15}>
-              <p className="text-base text-white/65 leading-relaxed mb-10">
-                A sua vivência de mercado tem valor legal. Através da Certificação por Competência amparada pelo{" "}
-                <strong className="text-white/90">Art. 41 da Lei nº 9.394/96</strong>, avaliamos a sua documentação e o seu
-                conhecimento prático. Um processo 100% online, seguro e direto ao ponto, feito para quem já tem a experiência
-                e só precisa da chancela oficial para crescer na carreira.
-              </p>
-            </Fade>
-            <Fade delay={0.2}>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <CTAButton text="Quero Validar Meu Tempo de Serviço" />
-                <a
-                  href={WA_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-2 border-white/30 hover:border-white/60 text-white font-semibold py-4 px-8 rounded-lg transition-all text-center"
-                >
-                  Falar com Consultor
-                </a>
-              </div>
-            </Fade>
-          </div>
+    <section
+      className="relative min-h-[600px] md:min-h-[680px] flex items-center overflow-hidden"
+      style={{
+        backgroundImage: "url('/images/hero_worker.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center right",
+      }}
+    >
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00458A]/95 via-[#00458A]/80 to-[#00458A]/30" />
 
-          {/* Image */}
-          <Fade delay={0.1} className="hidden md:block">
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop&auto=format"
-                alt="Profissional brasileiro bem-sucedido"
-                className="rounded-2xl shadow-2xl w-full object-cover"
-              />
-              {/* Badge 1 */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl p-4 shadow-xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-xl">🏆</div>
-                  <div>
-                    <p className="font-black text-[#001F3F] text-lg leading-none">7.000+</p>
-                    <p className="text-gray-500 text-xs">Alunos Certificados</p>
-                  </div>
-                </div>
-              </div>
-              {/* Badge 2 */}
-              <div className="absolute -top-4 -right-4 bg-orange-500 text-white rounded-xl p-3 shadow-xl text-center">
-                <p className="font-black text-sm leading-none">MEC</p>
-                <p className="text-xs opacity-80">Reconhecido</p>
-              </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-20 md:py-28 w-full">
+        <div className="max-w-2xl">
+          <Fade>
+            <span className="inline-block bg-white/15 text-white border border-white/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-6">
+              Certificação por Competência · Art. 41 — Lei nº 9.394/96
+            </span>
+          </Fade>
+
+          <Fade delay={0.05}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.08] mb-5">
+              Seus anos de trabalho duro podem valer um{" "}
+              <span className="text-[#FF6B6B]">Diploma Técnico Reconhecido.</span>
+            </h1>
+          </Fade>
+
+          <Fade delay={0.1}>
+            <p className="text-lg md:text-xl text-white/85 font-medium mb-4 leading-relaxed">
+              Chega de perder vagas, promoções ou o respeito profissional por não ter um diploma reconhecido!
+            </p>
+          </Fade>
+
+          <Fade delay={0.15}>
+            <p className="text-base text-white/70 leading-relaxed mb-10">
+              A sua vivência de mercado tem valor legal, e através da Certificação por Competência amparada pelo{" "}
+              <strong className="text-white">Art. 41 da Lei nº 9.394/96</strong>, nós avaliamos a sua documentação e o seu
+              conhecimento prático. Um processo 100% online, seguro e direto ao ponto, feito para quem já tem a experiência
+              de atuação e só precisa da chancela oficial para crescer na sua carreira.
+            </p>
+          </Fade>
+
+          <Fade delay={0.2}>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <CTAButton text="Quero Validar Meu Tempo de Serviço" className="text-base" />
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-white/40 hover:border-white/80 text-white font-semibold py-4 px-8 rounded-lg transition-all text-center text-sm uppercase tracking-wide"
+              >
+                Falar com Consultor
+              </a>
             </div>
           </Fade>
+
+          {/* Trust badges */}
+          <Fade delay={0.25}>
+            <div className="flex flex-wrap gap-4 mt-10">
+              {["✓ 100% Online", "✓ MEC Reconhecido", "✓ Validade Nacional", "✓ +7.000 Certificados"].map((badge) => (
+                <span key={badge} className="text-white/80 text-sm font-medium flex items-center gap-1">
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </Fade>
+        </div>
+      </div>
+
+      {/* Floating badge */}
+      <div className="absolute bottom-8 right-8 hidden lg:block">
+        <div className="bg-white rounded-2xl p-5 shadow-2xl text-center max-w-[160px]">
+          <div className="text-[#00458A] font-black text-3xl leading-none">7.000+</div>
+          <div className="text-gray-500 text-xs mt-1 leading-snug">Profissionais Certificados</div>
+          <div className="mt-3 bg-[#FF0000] text-white text-xs font-bold px-3 py-1 rounded-full">MEC</div>
         </div>
       </div>
     </section>
@@ -279,8 +312,8 @@ function CoursesSection() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-12">
-            <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Mais de 20 opções</span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#001F3F] mt-2 mb-4">
+            <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Mais de 20 opções</span>
+            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-4">
               Encontre a sua área e conquiste o seu registro profissional.
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
@@ -292,7 +325,7 @@ function CoursesSection() {
         {/* Scrollable Carousel */}
         <div
           className="overflow-x-auto pb-4 -mx-4 px-4"
-          style={{ scrollbarWidth: "thin", scrollbarColor: "#001F3F #f0f0f0" }}
+          style={{ scrollbarWidth: "thin", scrollbarColor: "#00458A #f0f0f0" }}
         >
           <div className="flex gap-5" style={{ width: "max-content" }}>
             {COURSES.map((course, i) => (
@@ -307,14 +340,14 @@ function CoursesSection() {
                       alt={course.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001F3F]/60 to-transparent" />
-                    <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#00458A]/60 to-transparent" />
+                    <span className="absolute top-3 left-3 bg-[#FF0000] text-white text-xs font-bold px-2 py-1 rounded">
                       POR COMPETÊNCIA
                     </span>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-bold text-[#001F3F] text-sm mb-3 leading-snug">{course.name}</h3>
-                    <span className="text-orange-500 font-semibold text-xs hover:text-orange-600 transition-colors">
+                    <h3 className="font-bold text-[#00458A] text-sm mb-3 leading-snug">{course.name}</h3>
+                    <span className="text-[#FF0000] font-semibold text-xs hover:text-[#cc0000] transition-colors">
                       SAIBA MAIS →
                     </span>
                   </div>
@@ -355,8 +388,8 @@ function VantagensSection() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-16">
-            <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Por que nos escolher</span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#001F3F] mt-2 mb-4">
+            <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Por que nos escolher</span>
+            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-4">
               Por que o Matrícula EAD é o caminho mais seguro para o seu Diploma?
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
@@ -368,14 +401,53 @@ function VantagensSection() {
         <div className="grid md:grid-cols-3 gap-8">
           {benefits.map((b, i) => (
             <Fade key={b.title} delay={i * 0.1}>
-              <div className="bg-gray-50 p-8 rounded-2xl hover:shadow-md transition-shadow border border-gray-100 hover:border-orange-100">
+              <div className="bg-gray-50 p-8 rounded-2xl hover:shadow-md transition-all border border-gray-100 hover:border-[#00458A]/20 group">
                 <div className="text-5xl mb-5">{b.icon}</div>
-                <h3 className="text-xl font-black text-[#001F3F] mb-4">{b.title}</h3>
+                <h3 className="text-xl font-black text-[#00458A] mb-4">{b.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{b.desc}</p>
               </div>
             </Fade>
           ))}
         </div>
+
+        {/* Image section */}
+        <Fade delay={0.2}>
+          <div className="mt-20 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <img
+                src="/images/worker_team.jpg"
+                alt="Equipe de trabalhadores brasileiros"
+                className="rounded-2xl shadow-xl w-full object-cover h-80"
+              />
+            </div>
+            <div>
+              <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Nossa Missão</span>
+              <h3 className="text-2xl md:text-3xl font-black text-[#00458A] mt-2 mb-4">
+                Transformando experiência em reconhecimento oficial
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                Milhões de brasileiros trabalham duro todos os dias sem o reconhecimento formal que merecem. O Matrícula EAD
+                existe para mudar essa realidade, conectando a sua experiência prática ao diploma técnico que abre portas.
+              </p>
+              <div className="flex flex-col gap-3">
+                {[
+                  "Processo 100% online e sem burocracia",
+                  "Suporte especializado do início ao fim",
+                  "Diploma com validade nacional e registro nos conselhos",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <div className="w-5 h-5 bg-[#00458A] rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-700 text-sm font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Fade>
       </div>
     </section>
   );
@@ -396,8 +468,8 @@ function ComoFuncionaSection() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-12">
-            <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Entenda o processo</span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#001F3F] mt-2 mb-6">
+            <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Entenda o processo</span>
+            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-6">
               Como o seu tempo de serviço se transforma em um Diploma oficial?
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -409,7 +481,7 @@ function ComoFuncionaSection() {
 
         {/* Art. 41 Box */}
         <Fade delay={0.1}>
-          <div className="bg-[#001F3F] text-white p-8 rounded-2xl mb-14 max-w-3xl mx-auto">
+          <div className="bg-[#00458A] text-white p-8 rounded-2xl mb-14 max-w-3xl mx-auto">
             <div className="flex items-start gap-4">
               <div className="text-3xl flex-shrink-0">⚖️</div>
               <div>
@@ -425,17 +497,17 @@ function ComoFuncionaSection() {
 
         {/* Requisitos */}
         <Fade delay={0.15}>
-          <h3 className="text-2xl font-black text-[#001F3F] text-center mb-8">
-            Requisitos Mínimos — Apenas 3 critérios simples separam você do seu reconhecimento oficial.
+          <h3 className="text-2xl font-black text-[#00458A] text-center mb-8">
+            Apenas 3 critérios simples separam você do seu reconhecimento oficial.
           </h3>
         </Fade>
 
         <div className="grid md:grid-cols-3 gap-6 mb-14">
           {requisitos.map((r, i) => (
             <Fade key={r.title} delay={i * 0.1}>
-              <div className="bg-white p-8 rounded-2xl shadow-sm text-center border-2 border-transparent hover:border-orange-200 transition-colors">
+              <div className="bg-white p-8 rounded-2xl shadow-sm text-center border-2 border-transparent hover:border-[#00458A]/20 transition-all">
                 <div className="text-5xl mb-4">{r.icon}</div>
-                <h4 className="text-xl font-black text-[#001F3F] mb-2">{r.title}</h4>
+                <h4 className="text-xl font-black text-[#00458A] mb-2">{r.title}</h4>
                 <p className="text-gray-500 text-sm">{r.desc}</p>
               </div>
             </Fade>
@@ -460,44 +532,44 @@ function ProcessoSection() {
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
-          <div className="text-center mb-16">
-            <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Trilha de certificação</span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#001F3F] mt-2">
+          <div className="text-center mb-14">
+            <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Passo a passo</span>
+            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2">
               O seu caminho até o Diploma Técnico em apenas 3 etapas:
             </h2>
           </div>
         </Fade>
 
-        <div className="space-y-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-1 gap-8 max-w-4xl mx-auto">
           {/* Etapa 1 */}
           <Fade>
-            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-orange-500">
+            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-[#FF0000]">
               <div className="flex items-start gap-6">
-                <div className="w-14 h-14 bg-[#001F3F] text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
+                <div className="w-14 h-14 bg-[#FF0000] text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
                   1
                 </div>
-                <div className="flex-grow">
-                  <h3 className="text-2xl font-black text-[#001F3F] mb-3">1ª Comprovação da Sua Experiência</h3>
-                  <p className="text-gray-600 mb-5 leading-relaxed">
-                    É aqui que a sua vivência de mercado ganha valor oficial. Você fará a sua inscrição e enviará de forma 100%
-                    digital a documentação que prova o seu tempo de serviço.
+                <div className="flex-1">
+                  <h3 className="text-2xl font-black text-[#00458A] mb-3">1ª Comprovação da Sua Experiência</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    É aqui que a sua vivência de mercado ganha valor oficial. Você fará a sua inscrição e enviará de forma
+                    100% digital a documentação que prova o seu tempo de serviço.
                   </p>
-                  <div className="bg-white p-5 rounded-xl border border-gray-200">
-                    <p className="font-bold text-[#001F3F] mb-3 text-sm">Como comprovar? Basta apresentar um dos formatos abaixo:</p>
-                    <div className="grid sm:grid-cols-2 gap-2">
+                  <div className="bg-white border border-gray-200 rounded-xl p-4">
+                    <p className="text-[#00458A] font-bold text-sm mb-2">Como comprovar? Basta apresentar um dos formatos abaixo:</p>
+                    <ul className="text-gray-600 text-sm space-y-1">
                       {[
                         "Carteira de Trabalho (CTPS)",
-                        "Contrato Social ou documentação de MEI",
+                        "Contrato Social ou documentação de MEI (se tiver negócio próprio)",
                         "Registro de Autônomo",
-                        "Declaração de Experiência Profissional",
+                        "Declaração de Experiência Profissional (com funções e período)",
                         "Certificados de cursos profissionalizantes da área",
                       ].map((item) => (
-                        <div key={item} className="flex items-center gap-2 text-gray-600 text-sm">
-                          <span className="text-orange-500 font-bold">✓</span>
+                        <li key={item} className="flex items-start gap-2">
+                          <span className="text-[#FF0000] font-bold mt-0.5">›</span>
                           {item}
-                        </div>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -506,13 +578,13 @@ function ProcessoSection() {
 
           {/* Etapa 2 */}
           <Fade delay={0.1}>
-            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-[#001F3F]">
+            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-[#00458A]">
               <div className="flex items-start gap-6">
-                <div className="w-14 h-14 bg-[#001F3F] text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
+                <div className="w-14 h-14 bg-[#00458A] text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
                   2
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-[#001F3F] mb-3">2ª Validação do Seu Conhecimento</h3>
+                  <h3 className="text-2xl font-black text-[#00458A] mb-3">2ª Validação do Seu Conhecimento</h3>
                   <p className="text-gray-600 leading-relaxed">
                     Com a sua documentação de experiência aprovada, chegou a hora de chancelar o que você sabe. Para garantir
                     sua segurança, você terá acesso a algumas aulas e a um simulado preparatório antes de realizar a sua
@@ -525,25 +597,28 @@ function ProcessoSection() {
 
           {/* Etapa 3 */}
           <Fade delay={0.2}>
-            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-orange-500">
+            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-[#FF0000]">
               <div className="flex items-start gap-6">
-                <div className="w-14 h-14 bg-orange-500 text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
+                <div className="w-14 h-14 bg-[#FF0000] text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
                   3
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-[#001F3F] mb-3">3ª Emissão do Seu Diploma Técnico</h3>
+                  <h3 className="text-2xl font-black text-[#00458A] mb-3">3ª Emissão do Seu Diploma Técnico</h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     Etapas concluídas, chegou a hora de ter o seu esforço reconhecido no papel. Você solicita o diploma de
                     forma simples no Portal do Aluno e nós emitimos em tempo recorde:{" "}
-                    <strong className="text-[#001F3F]">de 7 a 30 dias corridos.</strong> Sem enrolação. 🛡️
+                    <strong className="text-[#00458A]">de 7 a 30 dias corridos.</strong> Sem enrolação. 🛡️
                   </p>
-                  <div className="bg-[#001F3F]/5 border border-[#001F3F]/20 p-4 rounded-xl">
-                    <p className="text-[#001F3F] text-sm leading-relaxed">
+                  <div className="bg-[#00458A]/5 border border-[#00458A]/20 p-4 rounded-xl">
+                    <p className="text-[#00458A] text-sm leading-relaxed">
                       <strong>Segurança e Respaldo (MEC/SISTEC):</strong> Seu documento não é apenas um papel, é a sua chancela
                       oficial. Com validade em todo o Brasil, ele é o passaporte definitivo para você dar entrada no seu
                       Conselho de Classe e passar a assinar como Técnico.
                     </p>
                   </div>
+                  <p className="text-gray-500 text-sm mt-3 font-medium">
+                    ⏱️ O prazo para emissão do Diploma é de 10 a 40 dias.
+                  </p>
                 </div>
               </div>
             </div>
@@ -553,6 +628,29 @@ function ProcessoSection() {
         <Fade delay={0.3}>
           <div className="text-center mt-12">
             <CTAButton text="Quero analisar minha experiência" />
+          </div>
+        </Fade>
+
+        {/* Image */}
+        <Fade delay={0.1}>
+          <div className="mt-16 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Estude de onde estiver</span>
+              <h3 className="text-2xl md:text-3xl font-black text-[#00458A] mt-2 mb-4">
+                100% online, no seu ritmo
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Você não precisa parar de trabalhar para conquistar seu diploma. Todo o processo é feito de forma digital,
+                sem precisar ir a uma escola ou enfrentar filas. Basta ter acesso à internet.
+              </p>
+            </div>
+            <div>
+              <img
+                src="/images/worker_online.jpg"
+                alt="Trabalhador estudando online"
+                className="rounded-2xl shadow-xl w-full object-cover h-72"
+              />
+            </div>
           </div>
         </Fade>
       </div>
@@ -568,18 +666,17 @@ function OrgaosSection() {
     { sigla: "MEC", nome: "Ministério da Educação" },
     { sigla: "SISTEC", nome: "Sistema de Informações" },
     { sigla: "CFT", nome: "Conselho Federal Técnico" },
-    { sigla: "ABED", nome: "Assoc. Brasileira de EAD" },
-    { sigla: "ABNT", nome: "Normas Técnicas" },
+    { sigla: "Administração", nome: "Conselho de Administração" },
     { sigla: "MTE", nome: "Ministério do Trabalho" },
   ];
 
   return (
-    <section className="py-16 bg-gray-50 border-y border-gray-100">
+    <section className="py-16 bg-[#00458A]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-10">
-            <h2 className="text-2xl font-black text-[#001F3F]">Validade Nacional e Registro Garantido</h2>
-            <p className="text-gray-500 mt-2">
+            <h2 className="text-2xl font-black text-white">Validade Nacional e Registro Garantido.</h2>
+            <p className="text-white/70 mt-2">
               Instituições federais e conselhos de classe que garantem a validade nacional do seu diploma.
             </p>
           </div>
@@ -587,8 +684,8 @@ function OrgaosSection() {
         <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
           {orgaos.map((o, i) => (
             <Fade key={o.sigla} delay={i * 0.05}>
-              <div className="bg-white px-6 py-4 rounded-xl shadow-sm text-center border border-gray-100 hover:border-[#001F3F]/20 transition-colors min-w-[110px]">
-                <div className="text-2xl font-black text-[#001F3F]">{o.sigla}</div>
+              <div className="bg-white px-6 py-4 rounded-xl text-center min-w-[110px] hover:scale-105 transition-transform">
+                <div className="text-xl font-black text-[#00458A]">{o.sigla}</div>
                 <div className="text-xs text-gray-400 mt-1">{o.nome}</div>
               </div>
             </Fade>
@@ -608,8 +705,8 @@ function ProvaSection() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-16">
-            <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Resultados reais</span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#001F3F] mt-2 mb-4">
+            <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Resultados reais</span>
+            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-4">
               Junte-se a mais de 7.000 profissionais que pararam de perder oportunidades.
             </h2>
             <p className="text-gray-500 text-lg">
@@ -621,13 +718,13 @@ function ProvaSection() {
         {/* Números */}
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {[
-            { num: "+20", label: "Cursos a sua disposição", bg: "bg-[#001F3F]" },
-            { num: "+10", label: "Anos de experiência no Mercado", bg: "bg-[#002a52]" },
-            { num: "7.000+", label: "Alunos certificados", bg: "bg-orange-500" },
+            { num: "+ de 20", label: "Cursos a sua disposição!", bg: "bg-[#00458A]" },
+            { num: "+ de 10", label: "Anos de experiência no Mercado", bg: "bg-[#003a75]" },
+            { num: "+ 7.000", label: "Alunos certificados", bg: "bg-[#FF0000]" },
           ].map((stat, i) => (
             <Fade key={stat.num} delay={i * 0.1}>
               <div className={`${stat.bg} text-white p-10 rounded-2xl text-center shadow-lg`}>
-                <div className="text-6xl font-black mb-2">{stat.num}</div>
+                <div className="text-5xl font-black mb-2">{stat.num}</div>
                 <p className="text-white/80 text-lg">{stat.label}</p>
               </div>
             </Fade>
@@ -636,7 +733,7 @@ function ProvaSection() {
 
         {/* Depoimentos */}
         <Fade>
-          <h3 className="text-2xl md:text-3xl font-black text-[#001F3F] text-center mb-10">
+          <h3 className="text-2xl md:text-3xl font-black text-[#00458A] text-center mb-10">
             Conheça histórias reais de profissionais que transformaram sua carreira com o Matrícula EAD.
           </h3>
         </Fade>
@@ -644,15 +741,15 @@ function ProvaSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
           {TESTIMONIALS.map((t, i) => (
             <Fade key={t.name} delay={i * 0.07}>
-              <div className="bg-gray-50 p-6 rounded-2xl border-l-4 border-orange-500 hover:shadow-md transition-shadow">
-                <div className="text-orange-400 text-3xl mb-3">"</div>
+              <div className="bg-gray-50 p-6 rounded-2xl border-l-4 border-[#FF0000] hover:shadow-md transition-shadow">
+                <div className="text-[#FF0000] text-3xl mb-3 font-serif">"</div>
                 <p className="text-gray-700 italic leading-relaxed mb-5">{t.text}</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#001F3F] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 bg-[#00458A] rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {t.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-bold text-[#001F3F] text-sm">{t.name}</p>
+                    <p className="font-bold text-[#00458A] text-sm">{t.name}</p>
                     <p className="text-gray-400 text-xs">{t.role}</p>
                   </div>
                 </div>
@@ -661,9 +758,29 @@ function ProvaSection() {
           ))}
         </div>
 
+        {/* Image */}
+        <Fade delay={0.1}>
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-14">
+            <div>
+              <img
+                src="/images/worker_diploma.jpg"
+                alt="Trabalhador com diploma técnico"
+                className="rounded-2xl shadow-xl w-full object-cover h-80"
+              />
+            </div>
+            <div>
+              <img
+                src="/images/female_worker.jpg"
+                alt="Profissional brasileira"
+                className="rounded-2xl shadow-xl w-full object-cover h-80"
+              />
+            </div>
+          </div>
+        </Fade>
+
         <Fade>
           <div className="text-center">
-            <CTAButton text="Quero ser o próximo técnico certificado" className="text-lg py-5 px-10" />
+            <CTAButton text="Quero ser o próximo técnico certificado" className="text-base py-5 px-10" />
           </div>
         </Fade>
       </div>
@@ -682,8 +799,8 @@ function FAQSection() {
       <div className="max-w-3xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-14">
-            <span className="text-orange-500 font-semibold text-sm tracking-widest uppercase">Dúvidas frequentes</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#001F3F] mt-2">Ficou com alguma dúvida?</h2>
+            <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Dúvidas frequentes</span>
+            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2">Ficou com alguma dúvida?</h2>
           </div>
         </Fade>
 
@@ -695,9 +812,9 @@ function FAQSection() {
                   className="w-full text-left p-6 flex justify-between items-center gap-4 hover:bg-gray-50 transition-colors cursor-pointer"
                   onClick={() => setOpen(open === i ? null : i)}
                 >
-                  <span className="font-bold text-[#001F3F] text-base">{faq.q}</span>
+                  <span className="font-bold text-[#00458A] text-base">{faq.q}</span>
                   <span
-                    className={`text-orange-500 text-xl flex-shrink-0 transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}
+                    className={`text-[#FF0000] text-xl flex-shrink-0 transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}
                   >
                     ▼
                   </span>
@@ -719,10 +836,10 @@ function FAQSection() {
    ═══════════════════════════════════════════ */
 function FormSection() {
   return (
-    <section id="kommo-form" className="py-20 md:py-28 bg-[#001F3F]">
+    <section id="kommo-form" className="py-20 md:py-28 bg-[#00458A]">
       <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
         <Fade>
-          <span className="text-orange-400 font-semibold text-sm tracking-widest uppercase">Comece agora</span>
+          <span className="text-white/60 font-semibold text-xs tracking-widest uppercase">Comece agora</span>
           <h2 className="text-3xl md:text-4xl font-black text-white mt-2 mb-4">Comece Sua Jornada Agora</h2>
           <p className="text-white/70 text-lg mb-10 leading-relaxed">
             Preencha o formulário abaixo e um de nossos consultores entrará em contato para analisar sua experiência e mostrar
@@ -732,15 +849,20 @@ function FormSection() {
 
         {/* Kommo Form embed */}
         <Fade delay={0.1}>
-          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
-            <iframe
-              src="https://forms.kommo.com/1678979"
-              width="100%"
-              height="500"
-              frameBorder="0"
-              title="Formulário de Contato Matrícula EAD"
-              className="w-full"
+          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl p-2">
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1678979",hash:"f35e2f9b571e024e19fce8c6bf8c3d3e",locale:"pt"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`,
+              }}
             />
+            <script
+              id="amoforms_script_1678979"
+              async
+              src="https://forms.kommo.com/forms/assets/js/amoforms.js?1775926094"
+            />
+            <div id="amo-form-placeholder" className="min-h-[400px] flex items-center justify-center">
+              <p className="text-gray-400 text-sm">Carregando formulário...</p>
+            </div>
           </div>
         </Fade>
 
@@ -777,42 +899,55 @@ function FooterSection() {
           <div>
             <div className="flex flex-col leading-none mb-4">
               <span className="text-white font-black text-xl tracking-tight">Matrícula</span>
-              <span className="text-orange-500 font-bold text-xs tracking-widest uppercase">EAD</span>
+              <span className="text-[#FF0000] font-bold text-xs tracking-widest uppercase">EAD</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Facilitando o acesso à educação técnica através do Art. 41 da Lei Federal nº 9.394/96.
+              Matrícula EAD: Facilitando o acesso à educação técnica através do Art. 41 da Lei Federal nº 9.394/96.
+              Certificados emitidos por instituições parceiras devidamente credenciadas pelo MEC e registradas no SISTEC.
             </p>
+          </div>
+
+          {/* Certificados */}
+          <div>
+            <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-xs">Certificados</h4>
+            <div className="flex flex-wrap gap-2">
+              {["MEC", "SISTEC", "CFT", "Administração", "MTE"].map((selo) => (
+                <span key={selo} className="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-lg text-xs font-bold tracking-wider">
+                  {selo}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Contato */}
           <div>
-            <h4 className="font-bold text-white mb-4">Contato</h4>
+            <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-xs">Contato</h4>
             <div className="space-y-2 text-gray-400 text-sm">
-              <p>📧 contato@matriculaead.com.br</p>
-              <p>📞 (61) 3026-1085</p>
+              <p>
+                <a href="mailto:contato@matriculaead.com.br" className="hover:text-white transition-colors">
+                  contato@matriculaead.com.br
+                </a>
+              </p>
+              <p>
+                <a href="tel:+556130261085" className="hover:text-white transition-colors">
+                  (61) 3026-1085
+                </a>
+              </p>
               <p>Seg. a Sex. · 8h às 20h</p>
             </div>
           </div>
 
-          {/* Localização */}
-          <div>
-            <h4 className="font-bold text-white mb-4">Localização</h4>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Shopping Venâncio<br />
-              Asa Sul, Brasília - DF
-            </p>
-          </div>
-
           {/* Redes */}
           <div>
-            <h4 className="font-bold text-white mb-4">Redes Sociais</h4>
-            <div className="flex flex-col gap-2">
+            <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-xs">Redes Sociais</h4>
+            <div className="flex flex-col gap-3">
               {[
-                { href: "https://www.instagram.com/matricula_ead", label: "Instagram" },
-                { href: "https://www.facebook.com/matriculaead", label: "Facebook" },
-                { href: "https://www.youtube.com/@MatriculaEaD", label: "YouTube" },
+                { href: "https://www.instagram.com/matricula_ead", label: "Instagram", icon: "📷" },
+                { href: "https://www.facebook.com/matriculaead", label: "Facebook", icon: "📘" },
+                { href: "https://www.youtube.com/@MatriculaEaD", label: "YouTube", icon: "▶️" },
               ].map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors text-sm">
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <span>{s.icon}</span>
                   {s.label}
                 </a>
               ))}
@@ -820,27 +955,17 @@ function FooterSection() {
           </div>
         </div>
 
-        {/* Selos */}
+        {/* Bottom */}
         <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-wrap gap-3 justify-center mb-6">
-            {["MEC", "SISTEC", "ABED", "ABNT"].map((selo) => (
-              <span key={selo} className="bg-gray-800 text-gray-300 px-4 py-2 rounded-lg text-xs font-bold tracking-wider">
-                {selo}
-              </span>
-            ))}
-          </div>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-            <p className="text-gray-500 text-xs max-w-xl leading-relaxed">
-              Certificados emitidos por instituições parceiras devidamente credenciadas pelo MEC e registradas no SISTEC.
+            <p className="text-gray-600 text-xs">
+              © {new Date().getFullYear()} Matrícula EAD. Todos os direitos reservados.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Termos de Uso</a>
               <a href="#" className="text-gray-500 hover:text-white text-xs transition-colors">Política de Privacidade</a>
             </div>
           </div>
-          <p className="text-gray-600 text-xs text-center mt-6">
-            © {new Date().getFullYear()} Matrícula EAD. Todos os direitos reservados.
-          </p>
         </div>
       </div>
     </footer>
@@ -856,12 +981,13 @@ function WhatsAppButton() {
       href={WA_LINK}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] hover:bg-[#1ebe5d] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-200"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold py-3 px-5 rounded-full shadow-2xl hover:scale-105 transition-all duration-200"
       title="Fale conosco no WhatsApp"
     >
-      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
       </svg>
+      <span className="text-sm hidden sm:inline">📱 Avaliar minha experiência agora</span>
     </a>
   );
 }

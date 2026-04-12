@@ -4,13 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * VirtruvIA — Paleta Oficial
- * Stone:  #8B847D
- * Bronze: #B07345
- * Nude:   #DBC2B4
- * Blue:   #859BA4
- * Charcoal: #2C2C2C
- * White:  #FAFAF8
+ * Matrícula EAD — Paleta Oficial
+ * Azul Principal: #00458A
+ * Vermelho CTA:   #FF0000
+ * Branco:         #FFFFFF
+ * Cinza Claro:    #F8FAFC
+ * Cinza Texto:    #6B7280
  */
 
 @theme inline {
@@ -51,9 +50,9 @@
   --color-warm-white: #F8F7F5;
 
   /* Font families */
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-  --font-serif: "Lora", Georgia, serif;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-serif: "Inter", system-ui, sans-serif;
 }
 
 :root {
@@ -84,8 +83,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-warm-white text-charcoal;
-    font-family: var(--font-body);
+    background-color: #ffffff;
+    color: #1f2937;
+    font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
