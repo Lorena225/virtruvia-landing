@@ -970,31 +970,6 @@ function FAQSection() {
    FORM SECTION (Kommo)
    ═══════════════════════════════════════════ */
 function FormSection() {
-  const formContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Kommo/AMO Forms — scripts MUST be injected via DOM (React ignores <script> in JSX)
-    // Step 1: inline init script
-    const initScript = document.createElement("script");
-    initScript.text = `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1678979",hash:"f35e2f9b571e024e19fce8c6bf8c3d3e",locale:"pt"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`;
-    document.head.appendChild(initScript);
-
-    // Step 2: external loader script (async)
-    if (!document.getElementById("amoforms_script_1678979")) {
-      const loaderScript = document.createElement("script");
-      loaderScript.id = "amoforms_script_1678979";
-      loaderScript.async = true;
-      loaderScript.charset = "utf-8";
-      loaderScript.src = "https://forms.kommo.com/forms/assets/js/amoforms.js?1775998110";
-      document.head.appendChild(loaderScript);
-    }
-
-    return () => {
-      // Cleanup init script on unmount (loader script persists intentionally)
-      try { document.head.removeChild(initScript); } catch (_) {}
-    };
-  }, []);
-
   return (
     <section id="kommo-form" className="py-20 md:py-28 bg-[#0068D4]">
       <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
@@ -1007,14 +982,15 @@ function FormSection() {
           </p>
         </Fade>
 
-        {/* Kommo Form container — scripts injected via useEffect above */}
+        {/* Kommo Form — iframe de incorporação direto */}
         <Fade delay={0.1}>
-          <div
-            ref={formContainerRef}
-            className="bg-white rounded-2xl overflow-hidden shadow-2xl"
-            style={{ minHeight: 420 }}
-          >
-            {/* AMO Forms renders the form here automatically after scripts load */}
+          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <iframe
+              src="https://forms.kommo.com/rczmxzx"
+              style={{ width: "100%", minHeight: 500, border: "none" }}
+              allow="clipboard-write"
+              title="Formulário de Matrícula EAD"
+            />
           </div>
         </Fade>
 
