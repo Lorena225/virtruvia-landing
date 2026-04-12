@@ -1,7 +1,7 @@
 /**
  * Matrícula EAD — Landing Page de Alta Conversão
  * Certificação por Competência — Art. 41 da Lei nº 9.394/96
- * Design: Clean & Bold | Azul #00458A + Vermelho #FF0000 | Mobile First
+ * Design: Clean & Bold | Azul #0068D4 + Vermelho #FF0000 | Mobile First
  */
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
@@ -137,7 +137,7 @@ export default function Home() {
    ═══════════════════════════════════════════ */
 function AnnouncementBar() {
   return (
-    <div className="bg-[#00458A] text-white text-center py-2.5 px-4 text-sm font-medium">
+    <div className="bg-[#0068D4] text-white text-center py-2.5 px-4 text-sm font-medium">
       Matrículas 100% digitais: Faça agora mesmo a sua inscrição.
     </div>
   );
@@ -153,30 +153,23 @@ function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex justify-between items-center py-3">
-          {/* Logo */}
-          <a href="https://matriculaead.com.br" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+          {/* Logo oficial */}
+          <a href="https://matriculaead.com.br" target="_blank" rel="noopener noreferrer" className="flex items-center">
             <img
-              src="https://matriculaead.com.br/wp-content/uploads/2024/01/logo-matricula-ead.png"
-              alt="Matrícula EAD"
-              className="h-10 w-auto"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = "none";
-                const parent = target.parentElement;
-                if (parent) {
-                  const fallback = document.createElement("div");
-                  fallback.className = "flex flex-col leading-none";
-                  fallback.innerHTML = `<span class="text-[#00458A] font-black text-xl tracking-tight">Matrícula</span><span class="text-[#FF0000] font-bold text-xs tracking-widest uppercase">EAD</span>`;
-                  parent.appendChild(fallback);
-                }
-              }}
+              src="/images/logo_oficial.png"
+              alt="Matrícula EAD — Consultoria Educacional"
+              className="h-12 w-auto"
+              width={240}
+              height={60}
+              loading="eager"
+              decoding="sync"
             />
           </a>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-8 items-center">
             {[["#cursos", "Cursos"], ["#vantagens", "Vantagens"], ["#como-funciona", "Como Funciona"], ["#faq", "FAQ"]].map(([href, label]) => (
-              <a key={href} href={href} className="text-gray-600 hover:text-[#00458A] font-medium text-sm transition-colors">
+              <a key={href} href={href} className="text-gray-600 hover:text-[#0068D4] font-medium text-sm transition-colors">
                 {label}
               </a>
             ))}
@@ -233,7 +226,7 @@ function HeroSection() {
       }}
     >
       {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#00458A]/95 via-[#00458A]/80 to-[#00458A]/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0068D4]/95 via-[#0068D4]/80 to-[#0068D4]/30" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-20 md:py-28 w-full">
         <div className="max-w-2xl">
@@ -295,7 +288,7 @@ function HeroSection() {
       {/* Floating badge */}
       <div className="absolute bottom-8 right-8 hidden lg:block">
         <div className="bg-white rounded-2xl p-5 shadow-2xl text-center max-w-[160px]">
-          <div className="text-[#00458A] font-black text-3xl leading-none">7.000+</div>
+          <div className="text-[#0068D4] font-black text-3xl leading-none">7.000+</div>
           <div className="text-gray-500 text-xs mt-1 leading-snug">Profissionais Certificados</div>
           <div className="mt-3 bg-[#FF0000] text-white text-xs font-bold px-3 py-1 rounded-full">MEC</div>
         </div>
@@ -378,7 +371,7 @@ function CoursesSection() {
         <Fade>
           <div className="text-center mb-12">
             <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Mais de 20 opções</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2 mb-4">
               Encontre a sua área e conquiste o seu registro profissional.
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
@@ -395,10 +388,10 @@ function CoursesSection() {
             onClick={() => scrollManual("left")}
             aria-label="Anterior"
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 -translate-x-1 md:-translate-x-4
-              w-11 h-11 rounded-full bg-white border-2 border-[#00458A] text-[#00458A]
+              w-11 h-11 rounded-full bg-white border-2 border-[#0068D4] text-[#0068D4]
               flex items-center justify-center shadow-lg
-              hover:bg-[#00458A] hover:text-white transition-all duration-200
-              focus:outline-none focus:ring-2 focus:ring-[#00458A] focus:ring-offset-2"
+              hover:bg-[#0068D4] hover:text-white transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-[#0068D4] focus:ring-offset-2"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -411,10 +404,10 @@ function CoursesSection() {
             onClick={() => scrollManual("right")}
             aria-label="Próximo"
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20 translate-x-1 md:translate-x-4
-              w-11 h-11 rounded-full bg-white border-2 border-[#00458A] text-[#00458A]
+              w-11 h-11 rounded-full bg-white border-2 border-[#0068D4] text-[#0068D4]
               flex items-center justify-center shadow-lg
-              hover:bg-[#00458A] hover:text-white transition-all duration-200
-              focus:outline-none focus:ring-2 focus:ring-[#00458A] focus:ring-offset-2"
+              hover:bg-[#0068D4] hover:text-white transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-[#0068D4] focus:ring-offset-2"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -482,13 +475,13 @@ function CoursesSection() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       style={{ willChange: "transform" }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#00458A]/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0068D4]/60 to-transparent" />
                     <span className="absolute top-3 left-3 bg-[#FF0000] text-white text-xs font-bold px-2 py-1 rounded">
                       POR COMPETÊNCIA
                     </span>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-bold text-[#00458A] text-sm mb-3 leading-snug">{course.name}</h3>
+                    <h3 className="font-bold text-[#0068D4] text-sm mb-3 leading-snug">{course.name}</h3>
                     <span className="text-[#FF0000] font-semibold text-xs hover:text-[#cc0000] transition-colors">
                       SAIBA MAIS →
                     </span>
@@ -531,7 +524,7 @@ function VantagensSection() {
         <Fade>
           <div className="text-center mb-16">
             <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Por que nos escolher</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2 mb-4">
               Por que o Matrícula EAD é o caminho mais seguro para o seu Diploma?
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
@@ -543,9 +536,9 @@ function VantagensSection() {
         <div className="grid md:grid-cols-3 gap-8">
           {benefits.map((b, i) => (
             <Fade key={b.title} delay={i * 0.1}>
-              <div className="bg-gray-50 p-8 rounded-2xl hover:shadow-md transition-all border border-gray-100 hover:border-[#00458A]/20 group">
+              <div className="bg-gray-50 p-8 rounded-2xl hover:shadow-md transition-all border border-gray-100 hover:border-[#0068D4]/20 group">
                 <div className="text-5xl mb-5">{b.icon}</div>
-                <h3 className="text-xl font-black text-[#00458A] mb-4">{b.title}</h3>
+                <h3 className="text-xl font-black text-[#0068D4] mb-4">{b.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{b.desc}</p>
               </div>
             </Fade>
@@ -564,7 +557,7 @@ function VantagensSection() {
             </div>
             <div>
               <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Nossa Missão</span>
-              <h3 className="text-2xl md:text-3xl font-black text-[#00458A] mt-2 mb-4">
+              <h3 className="text-2xl md:text-3xl font-black text-[#0068D4] mt-2 mb-4">
                 Transformando experiência em reconhecimento oficial
               </h3>
               <p className="text-gray-600 leading-relaxed mb-6">
@@ -578,7 +571,7 @@ function VantagensSection() {
                   "Diploma com validade nacional e registro nos conselhos",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <div className="w-5 h-5 bg-[#00458A] rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-5 h-5 bg-[#0068D4] rounded-full flex items-center justify-center flex-shrink-0">
                       <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
@@ -611,7 +604,7 @@ function ComoFuncionaSection() {
         <Fade>
           <div className="text-center mb-12">
             <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Entenda o processo</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-6">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2 mb-6">
               Como o seu tempo de serviço se transforma em um Diploma oficial?
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -623,7 +616,7 @@ function ComoFuncionaSection() {
 
         {/* Art. 41 Box */}
         <Fade delay={0.1}>
-          <div className="bg-[#00458A] text-white p-8 rounded-2xl mb-14 max-w-3xl mx-auto">
+          <div className="bg-[#0068D4] text-white p-8 rounded-2xl mb-14 max-w-3xl mx-auto">
             <div className="flex items-start gap-4">
               <div className="text-3xl flex-shrink-0">⚖️</div>
               <div>
@@ -639,7 +632,7 @@ function ComoFuncionaSection() {
 
         {/* Requisitos */}
         <Fade delay={0.15}>
-          <h3 className="text-2xl font-black text-[#00458A] text-center mb-8">
+          <h3 className="text-2xl font-black text-[#0068D4] text-center mb-8">
             Apenas 3 critérios simples separam você do seu reconhecimento oficial.
           </h3>
         </Fade>
@@ -647,9 +640,9 @@ function ComoFuncionaSection() {
         <div className="grid md:grid-cols-3 gap-6 mb-14">
           {requisitos.map((r, i) => (
             <Fade key={r.title} delay={i * 0.1}>
-              <div className="bg-white p-8 rounded-2xl shadow-sm text-center border-2 border-transparent hover:border-[#00458A]/20 transition-all">
+              <div className="bg-white p-8 rounded-2xl shadow-sm text-center border-2 border-transparent hover:border-[#0068D4]/20 transition-all">
                 <div className="text-5xl mb-4">{r.icon}</div>
-                <h4 className="text-xl font-black text-[#00458A] mb-2">{r.title}</h4>
+                <h4 className="text-xl font-black text-[#0068D4] mb-2">{r.title}</h4>
                 <p className="text-gray-500 text-sm">{r.desc}</p>
               </div>
             </Fade>
@@ -676,7 +669,7 @@ function ProcessoSection() {
         <Fade>
           <div className="text-center mb-14">
             <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Passo a passo</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2">
               O seu caminho até o Diploma Técnico em apenas 3 etapas:
             </h2>
           </div>
@@ -691,13 +684,13 @@ function ProcessoSection() {
                   1
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-black text-[#00458A] mb-3">1ª Comprovação da Sua Experiência</h3>
+                  <h3 className="text-2xl font-black text-[#0068D4] mb-3">1ª Comprovação da Sua Experiência</h3>
                   <p className="text-gray-600 leading-relaxed mb-4">
                     É aqui que a sua vivência de mercado ganha valor oficial. Você fará a sua inscrição e enviará de forma
                     100% digital a documentação que prova o seu tempo de serviço.
                   </p>
                   <div className="bg-white border border-gray-200 rounded-xl p-4">
-                    <p className="text-[#00458A] font-bold text-sm mb-2">Como comprovar? Basta apresentar um dos formatos abaixo:</p>
+                    <p className="text-[#0068D4] font-bold text-sm mb-2">Como comprovar? Basta apresentar um dos formatos abaixo:</p>
                     <ul className="text-gray-600 text-sm space-y-1">
                       {[
                         "Carteira de Trabalho (CTPS)",
@@ -720,13 +713,13 @@ function ProcessoSection() {
 
           {/* Etapa 2 */}
           <Fade delay={0.1}>
-            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-[#00458A]">
+            <div className="bg-gray-50 rounded-2xl p-8 border-l-4 border-[#0068D4]">
               <div className="flex items-start gap-6">
-                <div className="w-14 h-14 bg-[#00458A] text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
+                <div className="w-14 h-14 bg-[#0068D4] text-white rounded-full flex items-center justify-center font-black text-xl flex-shrink-0">
                   2
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-[#00458A] mb-3">2ª Validação do Seu Conhecimento</h3>
+                  <h3 className="text-2xl font-black text-[#0068D4] mb-3">2ª Validação do Seu Conhecimento</h3>
                   <p className="text-gray-600 leading-relaxed">
                     Com a sua documentação de experiência aprovada, chegou a hora de chancelar o que você sabe. Para garantir
                     sua segurança, você terá acesso a algumas aulas e a um simulado preparatório antes de realizar a sua
@@ -745,14 +738,14 @@ function ProcessoSection() {
                   3
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black text-[#00458A] mb-3">3ª Emissão do Seu Diploma Técnico</h3>
+                  <h3 className="text-2xl font-black text-[#0068D4] mb-3">3ª Emissão do Seu Diploma Técnico</h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     Etapas concluídas, chegou a hora de ter o seu esforço reconhecido no papel. Você solicita o diploma de
                     forma simples no Portal do Aluno e nós emitimos em tempo recorde:{" "}
-                    <strong className="text-[#00458A]">de 7 a 30 dias corridos.</strong> Sem enrolação. 🛡️
+                    <strong className="text-[#0068D4]">de 7 a 30 dias corridos.</strong> Sem enrolação. 🛡️
                   </p>
-                  <div className="bg-[#00458A]/5 border border-[#00458A]/20 p-4 rounded-xl">
-                    <p className="text-[#00458A] text-sm leading-relaxed">
+                  <div className="bg-[#0068D4]/5 border border-[#0068D4]/20 p-4 rounded-xl">
+                    <p className="text-[#0068D4] text-sm leading-relaxed">
                       <strong>Segurança e Respaldo (MEC/SISTEC):</strong> Seu documento não é apenas um papel, é a sua chancela
                       oficial. Com validade em todo o Brasil, ele é o passaporte definitivo para você dar entrada no seu
                       Conselho de Classe e passar a assinar como Técnico.
@@ -778,7 +771,7 @@ function ProcessoSection() {
           <div className="mt-16 grid md:grid-cols-2 gap-12 items-center">
             <div>
               <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Estude de onde estiver</span>
-              <h3 className="text-2xl md:text-3xl font-black text-[#00458A] mt-2 mb-4">
+              <h3 className="text-2xl md:text-3xl font-black text-[#0068D4] mt-2 mb-4">
                 100% online, no seu ritmo
               </h3>
               <p className="text-gray-600 leading-relaxed">
@@ -813,7 +806,7 @@ function OrgaosSection() {
   ];
 
   return (
-    <section className="py-16 bg-[#00458A]">
+    <section className="py-16 bg-[#0068D4]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-10">
@@ -827,7 +820,7 @@ function OrgaosSection() {
           {orgaos.map((o, i) => (
             <Fade key={o.sigla} delay={i * 0.05}>
               <div className="bg-white px-6 py-4 rounded-xl text-center min-w-[110px] hover:scale-105 transition-transform">
-                <div className="text-xl font-black text-[#00458A]">{o.sigla}</div>
+                <div className="text-xl font-black text-[#0068D4]">{o.sigla}</div>
                 <div className="text-xs text-gray-400 mt-1">{o.nome}</div>
               </div>
             </Fade>
@@ -848,7 +841,7 @@ function ProvaSection() {
         <Fade>
           <div className="text-center mb-16">
             <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Resultados reais</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2 mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2 mb-4">
               Junte-se a mais de 7.000 profissionais que pararam de perder oportunidades.
             </h2>
             <p className="text-gray-500 text-lg">
@@ -860,7 +853,7 @@ function ProvaSection() {
         {/* Números */}
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {[
-            { num: "+ de 20", label: "Cursos a sua disposição!", bg: "bg-[#00458A]" },
+            { num: "+ de 20", label: "Cursos a sua disposição!", bg: "bg-[#0068D4]" },
             { num: "+ de 10", label: "Anos de experiência no Mercado", bg: "bg-[#003a75]" },
             { num: "+ 7.000", label: "Alunos certificados", bg: "bg-[#FF0000]" },
           ].map((stat, i) => (
@@ -875,7 +868,7 @@ function ProvaSection() {
 
         {/* Depoimentos */}
         <Fade>
-          <h3 className="text-2xl md:text-3xl font-black text-[#00458A] text-center mb-10">
+          <h3 className="text-2xl md:text-3xl font-black text-[#0068D4] text-center mb-10">
             Conheça histórias reais de profissionais que transformaram sua carreira com o Matrícula EAD.
           </h3>
         </Fade>
@@ -887,11 +880,11 @@ function ProvaSection() {
                 <div className="text-[#FF0000] text-3xl mb-3 font-serif">"</div>
                 <p className="text-gray-700 italic leading-relaxed mb-5">{t.text}</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#00458A] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 bg-[#0068D4] rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {t.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-bold text-[#00458A] text-sm">{t.name}</p>
+                    <p className="font-bold text-[#0068D4] text-sm">{t.name}</p>
                     <p className="text-gray-400 text-xs">{t.role}</p>
                   </div>
                 </div>
@@ -942,7 +935,7 @@ function FAQSection() {
         <Fade>
           <div className="text-center mb-14">
             <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Dúvidas frequentes</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#00458A] mt-2">Ficou com alguma dúvida?</h2>
+            <h2 className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2">Ficou com alguma dúvida?</h2>
           </div>
         </Fade>
 
@@ -954,7 +947,7 @@ function FAQSection() {
                   className="w-full text-left p-6 flex justify-between items-center gap-4 hover:bg-gray-50 transition-colors cursor-pointer"
                   onClick={() => setOpen(open === i ? null : i)}
                 >
-                  <span className="font-bold text-[#00458A] text-base">{faq.q}</span>
+                  <span className="font-bold text-[#0068D4] text-base">{faq.q}</span>
                   <span
                     className={`text-[#FF0000] text-xl flex-shrink-0 transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}
                   >
@@ -977,8 +970,33 @@ function FAQSection() {
    FORM SECTION (Kommo)
    ═══════════════════════════════════════════ */
 function FormSection() {
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Kommo/AMO Forms — scripts MUST be injected via DOM (React ignores <script> in JSX)
+    // Step 1: inline init script
+    const initScript = document.createElement("script");
+    initScript.text = `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1678979",hash:"f35e2f9b571e024e19fce8c6bf8c3d3e",locale:"pt"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`;
+    document.head.appendChild(initScript);
+
+    // Step 2: external loader script (async)
+    if (!document.getElementById("amoforms_script_1678979")) {
+      const loaderScript = document.createElement("script");
+      loaderScript.id = "amoforms_script_1678979";
+      loaderScript.async = true;
+      loaderScript.charset = "utf-8";
+      loaderScript.src = "https://forms.kommo.com/forms/assets/js/amoforms.js?1775998110";
+      document.head.appendChild(loaderScript);
+    }
+
+    return () => {
+      // Cleanup init script on unmount (loader script persists intentionally)
+      try { document.head.removeChild(initScript); } catch (_) {}
+    };
+  }, []);
+
   return (
-    <section id="kommo-form" className="py-20 md:py-28 bg-[#00458A]">
+    <section id="kommo-form" className="py-20 md:py-28 bg-[#0068D4]">
       <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
         <Fade>
           <span className="text-white/60 font-semibold text-xs tracking-widest uppercase">Comece agora</span>
@@ -989,22 +1007,14 @@ function FormSection() {
           </p>
         </Fade>
 
-        {/* Kommo Form embed */}
+        {/* Kommo Form container — scripts injected via useEffect above */}
         <Fade delay={0.1}>
-          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl p-2">
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1678979",hash:"f35e2f9b571e024e19fce8c6bf8c3d3e",locale:"pt"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");`,
-              }}
-            />
-            <script
-              id="amoforms_script_1678979"
-              async
-              src="https://forms.kommo.com/forms/assets/js/amoforms.js?1775926094"
-            />
-            <div id="amo-form-placeholder" className="min-h-[400px] flex items-center justify-center">
-              <p className="text-gray-400 text-sm">Carregando formulário...</p>
-            </div>
+          <div
+            ref={formContainerRef}
+            className="bg-white rounded-2xl overflow-hidden shadow-2xl"
+            style={{ minHeight: 420 }}
+          >
+            {/* AMO Forms renders the form here automatically after scripts load */}
           </div>
         </Fade>
 
@@ -1039,9 +1049,16 @@ function FooterSection() {
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex flex-col leading-none mb-4">
-              <span className="text-white font-black text-xl tracking-tight">Matrícula</span>
-              <span className="text-[#FF0000] font-bold text-xs tracking-widest uppercase">EAD</span>
+            <div className="mb-4">
+              <img
+                src="/images/logo_oficial.png"
+                alt="Matrícula EAD"
+                className="h-10 w-auto brightness-0 invert"
+                width={200}
+                height={50}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Matrícula EAD: Facilitando o acesso à educação técnica através do Art. 41 da Lei Federal nº 9.394/96.
