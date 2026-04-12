@@ -87,6 +87,7 @@ const FAQS = [
   },
 ];
 
+// WhatsApp CTA link — rastreável via UTM para analytics
 const WA_LINK =
   "https://api.whatsapp.com/send/?phone=556130261085&text=Ol%C3%A1%2C+venho+do+site+Matr%C3%ADcula+EaD+e+quero+mais+informa%C3%A7%C3%B5es+sobre+os+Cursos+EaD.&type=phone_number&app_absent=0";
 
@@ -99,6 +100,7 @@ function CTAButton({ text, className = "", id }: { text: string; className?: str
     <button
       id={id}
       onClick={scrollToForm}
+      aria-label={`${text} — Certificação por Competência Matrícula EAD`}
       className={`bg-[#FF0000] hover:bg-[#cc0000] active:bg-[#aa0000] text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-red-200 hover:-translate-y-0.5 cursor-pointer uppercase tracking-wide text-sm ${className}`}
     >
       {text}
@@ -111,8 +113,9 @@ function CTAButton({ text, className = "", id }: { text: string; className?: str
    ═══════════════════════════════════════════ */
 export default function Home() {
   return (
-    <div
+    <main
       className="min-h-screen bg-white overflow-x-hidden"
+      role="main"
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <AnnouncementBar />
@@ -128,7 +131,7 @@ export default function Home() {
       <FormSection />
       <FooterSection />
       <WhatsAppButton />
-    </div>
+    </main>
   );
 }
 
@@ -167,7 +170,7 @@ function Header() {
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-8 items-center">
+          <nav className="hidden md:flex gap-8 items-center" aria-label="Menu principal">
             {[["#cursos", "Cursos"], ["#vantagens", "Vantagens"], ["#como-funciona", "Como Funciona"], ["#faq", "FAQ"]].map(([href, label]) => (
               <a key={href} href={href} className="text-gray-600 hover:text-[#0068D4] font-medium text-sm transition-colors">
                 {label}
@@ -220,7 +223,7 @@ function HeroSection() {
     <section
       className="relative min-h-[600px] md:min-h-[680px] flex items-center overflow-hidden"
       style={{
-        backgroundImage: "url('/images/hero_worker.jpg')",
+        backgroundImage: "url('/images/hero_worker.jpg')", /* LCP image — preloaded in index.html */
         backgroundSize: "cover",
         backgroundPosition: "center right",
       }}
@@ -551,7 +554,7 @@ function VantagensSection() {
             <div>
               <img
                 src="/images/worker_team.jpg"
-                alt="Equipe de trabalhadores brasileiros"
+                alt="Equipe de trabalhadores brasileiros com equipamentos de segurança em obra de construção civil"
                 className="rounded-2xl shadow-xl w-full object-cover h-80"
               />
             </div>
@@ -782,7 +785,7 @@ function ProcessoSection() {
             <div>
               <img
                 src="/images/worker_online.jpg"
-                alt="Trabalhador estudando online"
+                alt="Profissional brasileiro estudando online para obter diploma técnico por competência"
                 className="rounded-2xl shadow-xl w-full object-cover h-72"
               />
             </div>
@@ -899,14 +902,14 @@ function ProvaSection() {
             <div>
               <img
                 src="/images/worker_diploma.jpg"
-                alt="Trabalhador com diploma técnico"
+                alt="Trabalhador brasileiro segurando diploma técnico reconhecido pelo MEC"
                 className="rounded-2xl shadow-xl w-full object-cover h-80"
               />
             </div>
             <div>
               <img
                 src="/images/female_worker.jpg"
-                alt="Profissional brasileira"
+                alt="Profissional brasileira com diploma técnico conquistado através da certificação por competência"
                 className="rounded-2xl shadow-xl w-full object-cover h-80"
               />
             </div>
@@ -930,12 +933,12 @@ function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-gray-50">
+    <section id="faq" aria-labelledby="faq-heading" className="py-20 md:py-28 bg-gray-50">
       <div className="max-w-3xl mx-auto px-4 md:px-8">
         <Fade>
           <div className="text-center mb-14">
             <span className="text-[#FF0000] font-semibold text-xs tracking-widest uppercase">Dúvidas frequentes</span>
-            <h2 className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2">Ficou com alguma dúvida?</h2>
+            <h2 id="faq-heading" className="text-3xl md:text-4xl font-black text-[#0068D4] mt-2">Ficou com alguma dúvida?</h2>
           </div>
         </Fade>
 
@@ -946,6 +949,8 @@ function FAQSection() {
                 <button
                   className="w-full text-left p-6 flex justify-between items-center gap-4 hover:bg-gray-50 transition-colors cursor-pointer"
                   onClick={() => setOpen(open === i ? null : i)}
+            aria-expanded={open === i}
+            aria-controls={`faq-answer-${i}`}
                 >
                   <span className="font-bold text-[#0068D4] text-base">{faq.q}</span>
                   <span
@@ -1028,7 +1033,7 @@ function FooterSection() {
             <div className="mb-4">
               <img
                 src="/images/logo_oficial.png"
-                alt="Matrícula EAD"
+                alt="Matrícula EAD — Consultoria Educacional em Certificação Técnica"
                 className="h-10 w-auto brightness-0 invert"
                 width={200}
                 height={50}
@@ -1077,12 +1082,12 @@ function FooterSection() {
             <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-xs">Redes Sociais</h4>
             <div className="flex flex-col gap-3">
               {[
-                { href: "https://www.instagram.com/matricula_ead", label: "Instagram", icon: "📷" },
-                { href: "https://www.facebook.com/matriculaead", label: "Facebook", icon: "📘" },
-                { href: "https://www.youtube.com/@MatriculaEaD", label: "YouTube", icon: "▶️" },
+                { href: "https://www.instagram.com/matricula_ead", label: "Instagram", icon: "📷", title: "Siga o Matrícula EAD no Instagram" },
+                { href: "https://www.facebook.com/matriculaead", label: "Facebook", icon: "📘", title: "Curta o Matrícula EAD no Facebook" },
+                { href: "https://www.youtube.com/@MatriculaEaD", label: "YouTube", icon: "▶️", title: "Assista aos vídeos do Matrícula EAD no YouTube" },
               ].map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2">
-                  <span>{s.icon}</span>
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.title} aria-label={s.title} className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2">
+                  <span aria-hidden="true">{s.icon}</span>
                   {s.label}
                 </a>
               ))}
