@@ -3,7 +3,7 @@
  * Certificação por Competência — Art. 41 da Lei nº 9.394/96
  * Design: Clean & Bold | Azul #00458A + Vermelho #FF0000 | Mobile First
  */
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 
 /* ─── Animation Helper ─── */
@@ -307,6 +307,45 @@ function HeroSection() {
    CURSOS
    ═══════════════════════════════════════════ */
 function CoursesSection() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const autoScrollRef = useRef<number | null>(null);
+  const isPausedRef = useRef(false);
+  const CARD_STEP = 280; // px per arrow click (≈ 1 card + gap)
+  const SPEED = 0.55;    // pixels per animation frame (slow & smooth)
+
+  // Duplicate list for seamless infinite loop
+  const DOUBLED = [...COURSES, ...COURSES];
+
+  const startAutoScroll = useCallback(() => {
+    const step = () => {
+      const track = trackRef.current;
+      if (track && !isPausedRef.current) {
+        track.scrollLeft += SPEED;
+        // When we reach the midpoint (second copy starts), jump back silently
+        if (track.scrollLeft >= track.scrollWidth / 2) {
+          track.scrollLeft = 0;
+        }
+      }
+      autoScrollRef.current = requestAnimationFrame(step);
+    };
+    autoScrollRef.current = requestAnimationFrame(step);
+  }, []);
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => {
+      if (autoScrollRef.current) cancelAnimationFrame(autoScrollRef.current);
+    };
+  }, [startAutoScroll]);
+
+  const scrollManual = (dir: "left" | "right") => {
+    const track = trackRef.current;
+    if (!track) return;
+    isPausedRef.current = true;
+    track.scrollBy({ left: dir === "right" ? CARD_STEP * 3 : -CARD_STEP * 3, behavior: "smooth" });
+    setTimeout(() => { isPausedRef.current = false; }, 2800);
+  };
+
   return (
     <section id="cursos" className="py-20 md:py-28 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -322,23 +361,71 @@ function CoursesSection() {
           </div>
         </Fade>
 
-        {/* Scrollable Carousel */}
-        <div
-          className="overflow-x-auto pb-4 -mx-4 px-4"
-          style={{ scrollbarWidth: "thin", scrollbarColor: "#00458A #f0f0f0" }}
-        >
-          <div className="flex gap-5" style={{ width: "max-content" }}>
-            {COURSES.map((course, i) => (
-              <Fade key={course.name} delay={Math.min(i * 0.02, 0.3)}>
+        {/* Carousel wrapper — relative for arrow positioning */}
+        <div className="relative">
+
+          {/* ← Arrow */}
+          <button
+            onClick={() => scrollManual("left")}
+            aria-label="Anterior"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 -translate-x-1 md:-translate-x-4
+              w-11 h-11 rounded-full bg-white border-2 border-[#00458A] text-[#00458A]
+              flex items-center justify-center shadow-lg
+              hover:bg-[#00458A] hover:text-white transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-[#00458A] focus:ring-offset-2"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          {/* → Arrow */}
+          <button
+            onClick={() => scrollManual("right")}
+            aria-label="Próximo"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 translate-x-1 md:translate-x-4
+              w-11 h-11 rounded-full bg-white border-2 border-[#00458A] text-[#00458A]
+              flex items-center justify-center shadow-lg
+              hover:bg-[#00458A] hover:text-white transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-[#00458A] focus:ring-offset-2"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+
+          {/* Soft fade edges */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-14 z-10
+            bg-gradient-to-r from-gray-50 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-14 z-10
+            bg-gradient-to-l from-gray-50 to-transparent" />
+
+          {/* Scrollable track — no scrollbar */}
+          <div
+            ref={trackRef}
+            onMouseEnter={() => { isPausedRef.current = true; }}
+            onMouseLeave={() => { isPausedRef.current = false; }}
+            onTouchStart={() => { isPausedRef.current = true; }}
+            onTouchEnd={() => setTimeout(() => { isPausedRef.current = false; }, 2800)}
+            className="overflow-x-auto pb-4 px-8"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+          >
+            <div className="flex gap-5" style={{ width: "max-content" }}>
+              {DOUBLED.map((course, i) => (
                 <div
-                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
-                  style={{ width: 260 }}
+                  key={`${course.name}-${i}`}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg
+                    transition-all duration-300 hover:-translate-y-1 cursor-pointer group flex-shrink-0"
+                  style={{ width: 255 }}
                 >
                   <div className="relative overflow-hidden h-40">
                     <img
                       src={course.img}
                       alt={course.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#00458A]/60 to-transparent" />
                     <span className="absolute top-3 left-3 bg-[#FF0000] text-white text-xs font-bold px-2 py-1 rounded">
@@ -352,8 +439,8 @@ function CoursesSection() {
                     </span>
                   </div>
                 </div>
-              </Fade>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
