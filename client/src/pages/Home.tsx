@@ -33,29 +33,30 @@ function Fade({
 }
 
 /* ─── Course Data ─── */
-// Each entry has img (desktop 400×260) and imgSm (mobile 200×130, ~50% bytes)
-const COURSES: { name: string; img: string; imgSm: string }[] = [
-  { name: "Técnico em Açúcar e Álcool",           img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Administração",              img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Agricultura",                img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Agrimensura",                img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Agropecuária",               img: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Contabilidade",              img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Edificações",                img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Eletroeletrônica",           img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Eletromecânica",             img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Eletrônica",                 img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Eletrotécnica",              img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Mecânica Industrial",        img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Meio Ambiente",              img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Mineração",                  img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Petróleo e Gás",             img: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Química",                    img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Refrigeração e Climatização",img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Secretário Escolar",         img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Segurança do Trabalho",      img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Telecomunicações",           img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&h=130&fit=crop&auto=format&q=60" },
-  { name: "Técnico em Transações Imobiliárias",    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200&h=130&fit=crop&auto=format&q=60" },
+// Each entry has img (desktop 400×260), imgSm (mobile 200×130), desc and topics
+const TOPICS = ["Autorizado pelo MEC", "Curso EAD", "Análise rápida dos seus documentos"];
+const COURSES: { name: string; img: string; imgSm: string; desc: string }[] = [
+  { name: "Técnico em Açúcar e Álcool",            desc: "Aprenda a controlar todas as etapas da cadeia sucroenergética, da colheita à fermentação industrial.",                                                  img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Administração",               desc: "Desenvolva visão estratégica para processos, finanças e gestão de pessoas no dia a dia das organizações.",                                              img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Agricultura",                 desc: "Planeje a produção agrícola com foco em sustentabilidade, mecanização e gestão de propriedades.",                                                       img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Agrimensura",                 desc: "Execute levantamentos topográficos, geodésicos e de georreferenciamento seguindo normas atualizadas.",                                                  img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Agropecuária",                desc: "Integre técnicas de zootecnia e agricultura para administrar propriedades de alta produtividade.",                                                      img: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Contabilidade",               desc: "Domine rotinas fiscais, tributárias e contábeis com prática orientada por especialistas.",                                                              img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Edificações",                 desc: "Projete, orce e acompanhe obras civis usando softwares e normas técnicas atualizadas.",                                                                 img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletroeletrônica",            desc: "Monte, mantenha e automatize sistemas eletroeletrônicos residenciais, industriais e de telecom.",                                                       img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletromecânica",              desc: "Integre sistemas elétricos e mecânicos em linhas industriais com segurança e rendimento.",                                                              img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletrônica",                  desc: "Desenvolva e teste placas, circuitos e dispositivos eletrônicos com ferramentas atualizadas.",                                                          img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Eletrotécnica",               desc: "Atue em projetos, instalações e manutenção elétrica com normas NR10, NR35 e automação industrial.",                                                    img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Mecânica Industrial",         desc: "Aplique manutenção, metrologia e processos mecânicos em plantas fabris de alto desempenho.",                                                            img: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Meio Ambiente",               desc: "Gerencie programas ambientais, licenciamento e sustentabilidade com foco em ESG e compliance.",                                                         img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Mineração",                   desc: "Planeje lavra, beneficiamento e segurança operacional em empreendimentos minerais.",                                                                    img: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Petróleo e Gás",              desc: "Atue na exploração, produção e processamento com foco em segurança e eficiência energética.",                                                           img: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Química",                     desc: "Controle processos químicos industriais, análises laboratoriais e tratamento de efluentes.",                                                            img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Refrigeração e Climatização", desc: "Atue com instalação, operação e manutenção de sistemas de refrigeração e climatização em ambientes residenciais e industriais.",                        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Secretário Escolar",          desc: "Organize rotinas acadêmicas, documentos e atendimento em instituições de ensino.",                                                                      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Segurança do Trabalho",       desc: "Previna acidentes com gestão de riscos, PPRA, PCMSO e cultura de segurança.",                                                                          img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Telecomunicações",            desc: "Implemente redes, fibra óptica e sistemas de transmissão com padrões atualizados.",                                                                     img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&h=130&fit=crop&auto=format&q=60" },
+  { name: "Técnico em Transações Imobiliárias",     desc: "Gerencie documentação, vendas e locações com foco em avaliação e legislação imobiliária.",                                                              img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=260&fit=crop&auto=format&q=75", imgSm: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200&h=130&fit=crop&auto=format&q=60" },
 ];
 
 /* ─── Testimonials ─── */
@@ -178,7 +179,7 @@ export default function Home() {
       <AnnouncementBar openForm={openForm} />
       <Header openForm={openForm} />
       <HeroSection openForm={openForm} />
-      <CoursesSection />
+      <CoursesSection openForm={openForm} />
       <VantagensSection openForm={openForm} />
       <ComoFuncionaSection openForm={openForm} />
       <ProcessoSection openForm={openForm} />
@@ -360,7 +361,7 @@ function HeroSection({ openForm }: { openForm: () => void }) {
 /* ═══════════════════════════════════════════
    CURSOS  (mobile-optimised carousel)
    ═══════════════════════════════════════════ */
-function CoursesSection() {
+function CoursesSection({ openForm }: { openForm: () => void }) {
   const trackRef    = useRef<HTMLDivElement>(null);
   const sectionRef  = useRef<HTMLElement>(null);
   const autoScrollRef = useRef<number | null>(null);
@@ -510,25 +511,25 @@ function CoursesSection() {
                 <div
                   key={`${course.name}-${i}`}
                   className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg
-                    transition-shadow duration-300 hover:-translate-y-1 cursor-pointer group flex-shrink-0"
+                    transition-shadow duration-300 hover:-translate-y-1 group flex-shrink-0 flex flex-col"
                   style={{
-                    width: 255,
+                    width: 270,
                     // Isolate each card's paint/layout from siblings
                     contain: "layout style paint",
                   }}
                 >
                   {/* Fixed-size image container prevents layout shift (CLS = 0) */}
                   <div
-                    className="relative overflow-hidden"
-                    style={{ height: 160, background: "#e5e7eb" }}
+                    className="relative overflow-hidden flex-shrink-0"
+                    style={{ height: 155, background: "#e5e7eb" }}
                   >
                     <img
-                      src={course.imgSm}          /* mobile-first: small src */
+                      src={course.imgSm}
                       srcSet={`${course.imgSm} 200w, ${course.img} 400w`}
-                      sizes="(max-width: 640px) 200px, 255px"
+                      sizes="(max-width: 640px) 200px, 270px"
                       alt={course.name}
-                      width={255}
-                      height={160}
+                      width={270}
+                      height={155}
                       loading="lazy"
                       decoding="async"
                       fetchPriority="low"
@@ -540,11 +541,34 @@ function CoursesSection() {
                       POR COMPETÊNCIA
                     </span>
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-[#0068D4] text-sm mb-3 leading-snug">{course.name}</h3>
-                    <span className="text-[#FF0000] font-semibold text-xs hover:text-[#cc0000] transition-colors">
-                      SAIBA MAIS →
-                    </span>
+
+                  {/* Card body */}
+                  <div className="p-4 flex flex-col flex-1">
+                    {/* Title — never changed */}
+                    <h3 className="font-bold text-[#0068D4] text-sm leading-snug mb-2">{course.name}</h3>
+
+                    {/* Description */}
+                    <p className="text-gray-500 text-xs leading-relaxed mb-3">{course.desc}</p>
+
+                    {/* Topics */}
+                    <ul className="space-y-1 mb-4">
+                      {TOPICS.map((t) => (
+                        <li key={t} className="flex items-center gap-1.5 text-xs text-gray-600">
+                          <span className="text-green-500 font-bold text-sm leading-none">✓</span>
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA button — opens Kommo form modal */}
+                    <button
+                      onClick={openForm}
+                      className="mt-auto w-full bg-[#FF0000] hover:bg-[#cc0000] active:bg-[#aa0000]
+                        text-white font-bold text-xs py-2.5 px-4 rounded-lg
+                        transition-colors duration-200 uppercase tracking-wide cursor-pointer"
+                    >
+                      Inicie agora
+                    </button>
                   </div>
                 </div>
               ))}
