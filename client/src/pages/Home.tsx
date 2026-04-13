@@ -882,12 +882,12 @@ function ProcessoSection({ openForm }: { openForm: () => void }) {
    ═══════════════════════════════════════════ */
 function OrgaosSection() {
   const orgaos = [
-    { sigla: "CFQ",    nome: "Conselho Federal de Química",           logo: "/images/logos/cfq.webp" },
-    { sigla: "CFT",    nome: "Conselho Federal Técnico",              logo: "/images/logos/cft.webp" },
-    { sigla: "CFTA",   nome: "Conselho Federal Técnico Agrícola",     logo: "/images/logos/cfta.webp" },
-    { sigla: "CRA",    nome: "Conselho Regional de Administração",    logo: "/images/logos/cra.webp" },
-    { sigla: "MEC",    nome: "Ministério da Educação",                logo: "/images/logos/mec.webp" },
-    { sigla: "SISTEC", nome: "Sistema Nacional de Informações da Ed.",logo: "/images/logos/sistec.webp" },
+    { sigla: "CFQ",    nome: "Conselho Federal de Química",            logo: "/images/logos/cfq.webp",    logo2x: "/images/logos/cfq@2x.webp" },
+    { sigla: "CFT",    nome: "Conselho Federal Técnico",               logo: "/images/logos/cft.webp",    logo2x: "/images/logos/cft@2x.webp" },
+    { sigla: "CFTA",   nome: "Conselho Federal Técnico Agrícola",      logo: "/images/logos/cfta.webp",   logo2x: "/images/logos/cfta@2x.webp" },
+    { sigla: "CRA",    nome: "Conselho Regional de Administração",     logo: "/images/logos/cra.webp",    logo2x: "/images/logos/cra@2x.webp" },
+    { sigla: "MEC",    nome: "Ministério da Educação",                 logo: "/images/logos/mec.webp",    logo2x: "/images/logos/mec@2x.webp" },
+    { sigla: "SISTEC", nome: "Sistema Nacional de Informações da Ed.", logo: "/images/logos/sistec.webp", logo2x: "/images/logos/sistec@2x.webp" },
   ];
 
   return (
@@ -907,13 +907,16 @@ function OrgaosSection() {
               <div className="bg-white rounded-2xl px-6 py-5 flex flex-col items-center justify-center gap-2 min-w-[140px] max-w-[160px] hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-default">
                 <img
                   src={o.logo}
+                  srcSet={`${o.logo} 1x, ${o.logo2x} 2x`}
                   alt={`Logo ${o.nome} — ${o.sigla}`}
                   title={o.nome}
                   width={120}
                   height={52}
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   className="object-contain w-[120px] h-[52px]"
+                  style={{ contain: 'layout style' }}
                 />
                 <span className="text-[10px] text-gray-400 text-center leading-tight">{o.nome}</span>
               </div>
