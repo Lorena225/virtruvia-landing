@@ -888,8 +888,6 @@ function OrgaosSection() {
     { sigla: "CRA",    nome: "Conselho Regional de Administração",    logo: "/images/logos/cra.webp" },
     { sigla: "MEC",    nome: "Ministério da Educação",                logo: "/images/logos/mec.webp" },
     { sigla: "SISTEC", nome: "Sistema Nacional de Informações da Ed.",logo: "/images/logos/sistec.webp" },
-    { sigla: "ABED",   nome: "Associação Brasileira de EaD",          logo: "/images/logos/abed.png" },
-    { sigla: "ABNT",   nome: "Associação Brasileira de Normas Técnicas", logo: "/images/logos/abnt.jpg" },
   ];
 
   return (
