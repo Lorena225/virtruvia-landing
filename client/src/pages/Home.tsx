@@ -4,6 +4,7 @@
  * Design: Clean & Bold | Azul #0068D4 + Vermelho #FF0000 | Mobile First
  */
 import { useRef, useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { motion, useInView } from "framer-motion";
 
 /* ─── Animation Helper ─── */
@@ -91,15 +92,67 @@ const FAQS = [
 const WA_LINK =
   "https://api.whatsapp.com/send/?phone=556130261085&text=Ol%C3%A1%2C+venho+do+site+Matr%C3%ADcula+EaD+e+quero+mais+informa%C3%A7%C3%B5es+sobre+os+Cursos+EaD.&type=phone_number&app_absent=0";
 
+/* ─── Form Modal ─── */
+function FormModal({ onClose }: { onClose: () => void }) {
+  // Fechar com ESC
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handler);
+    // Bloquear scroll do body
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handler);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Formulário de Matrícula EAD"
+    >
+      {/* Overlay */}
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Modal container — tamanho ajustado ao formulário */}
+      <div
+        className="relative bg-white rounded-2xl shadow-2xl overflow-hidden"
+        style={{ width: "min(520px, 100%)", maxHeight: "90vh" }}
+      >
+        {/* Botão fechar */}
+        <button
+          onClick={onClose}
+          aria-label="Fechar formulário"
+          className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 transition-colors text-lg font-bold leading-none"
+        >
+          ×
+        </button>
+
+        {/* Iframe Kommo */}
+        <iframe
+          src="https://forms.kommo.com/rczmxzx"
+          style={{ width: "100%", height: "560px", border: "none", display: "block" }}
+          allow="clipboard-write"
+          title="Formulário de Matrícula EAD"
+        />
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 /* ─── CTA Button ─── */
-function CTAButton({ text, className = "", id }: { text: string; className?: string; id?: string }) {
-  const scrollToForm = () => {
-    document.getElementById("kommo-form")?.scrollIntoView({ behavior: "smooth" });
-  };
+function CTAButton({ text, className = "", id, onOpenForm }: { text: string; className?: string; id?: string; onOpenForm?: () => void }) {
   return (
     <button
       id={id}
-      onClick={scrollToForm}
+      onClick={onOpenForm}
       aria-label={`${text} — Certificação por Competência Matrícula EAD`}
       className={`bg-[#FF0000] hover:bg-[#cc0000] active:bg-[#aa0000] text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-red-200 hover:-translate-y-0.5 cursor-pointer uppercase tracking-wide text-sm ${className}`}
     >
@@ -112,25 +165,29 @@ function CTAButton({ text, className = "", id }: { text: string; className?: str
    MAIN PAGE
    ═══════════════════════════════════════════ */
 export default function Home() {
+  const [formOpen, setFormOpen] = useState(false);
+  const openForm = useCallback(() => setFormOpen(true), []);
+  const closeForm = useCallback(() => setFormOpen(false), []);
+
   return (
     <main
       className="min-h-screen bg-white overflow-x-hidden"
       role="main"
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
-      <AnnouncementBar />
-      <Header />
-      <HeroSection />
+      <AnnouncementBar openForm={openForm} />
+      <Header openForm={openForm} />
+      <HeroSection openForm={openForm} />
       <CoursesSection />
-      <VantagensSection />
-      <ComoFuncionaSection />
-      <ProcessoSection />
+      <VantagensSection openForm={openForm} />
+      <ComoFuncionaSection openForm={openForm} />
+      <ProcessoSection openForm={openForm} />
       <OrgaosSection />
-      <ProvaSection />
+      <ProvaSection openForm={openForm} />
       <FAQSection />
-      <FormSection />
-      <FooterSection />
+      <FooterSection openForm={openForm} />
       <WhatsAppButton />
+      {formOpen && <FormModal onClose={closeForm} />}
     </main>
   );
 }
@@ -138,7 +195,7 @@ export default function Home() {
 /* ═══════════════════════════════════════════
    ANNOUNCEMENT BAR
    ═══════════════════════════════════════════ */
-function AnnouncementBar() {
+function AnnouncementBar({ openForm }: { openForm?: () => void }) {
   return (
     <div className="bg-[#0068D4] text-white text-center py-2.5 px-4 text-sm font-medium">
       Matrículas 100% digitais: Faça agora mesmo a sua inscrição.
@@ -149,7 +206,7 @@ function AnnouncementBar() {
 /* ═══════════════════════════════════════════
    HEADER
    ═══════════════════════════════════════════ */
-function Header() {
+function Header({ openForm }: { openForm: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -205,9 +262,9 @@ function Header() {
                 {label}
               </a>
             ))}
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="block bg-[#FF0000] text-white text-center font-bold py-3 px-6 rounded-lg mt-2 uppercase tracking-wide">
+            <button onClick={openForm} className="block w-full bg-[#FF0000] text-white text-center font-bold py-3 px-6 rounded-lg mt-2 uppercase tracking-wide cursor-pointer">
               FALE AGORA
-            </a>
+            </button>
           </div>
         )}
       </div>
@@ -218,7 +275,7 @@ function Header() {
 /* ═══════════════════════════════════════════
    HERO
    ═══════════════════════════════════════════ */
-function HeroSection() {
+function HeroSection({ openForm }: { openForm: () => void }) {
   return (
     <section
       className="relative min-h-[600px] md:min-h-[680px] flex items-center overflow-hidden"
@@ -263,7 +320,7 @@ function HeroSection() {
 
           <Fade delay={0.2}>
             <div className="flex flex-col sm:flex-row gap-4">
-              <CTAButton text="Quero Validar Meu Tempo de Serviço" className="text-base" />
+              <CTAButton text="Quero Validar Meu Tempo de Serviço" className="text-base" onOpenForm={openForm} />
               <a
                 href={WA_LINK}
                 target="_blank"
@@ -502,7 +559,7 @@ function CoursesSection() {
 /* ═══════════════════════════════════════════
    VANTAGENS
    ═══════════════════════════════════════════ */
-function VantagensSection() {
+function VantagensSection({ openForm }: { openForm: () => void }) {
   const benefits = [
     {
       icon: "⚡",
@@ -594,7 +651,7 @@ function VantagensSection() {
 /* ═══════════════════════════════════════════
    COMO FUNCIONA
    ═══════════════════════════════════════════ */
-function ComoFuncionaSection() {
+function ComoFuncionaSection({ openForm }: { openForm: () => void }) {
   const requisitos = [
     { icon: "👤", title: "Mais de 18 anos", desc: "Maioridade legal para a certificação profissional" },
     { icon: "🎓", title: "Ensino Médio Completo", desc: "Apresentar o histórico ou certificado de conclusão" },
@@ -654,7 +711,7 @@ function ComoFuncionaSection() {
 
         <Fade delay={0.2}>
           <div className="text-center">
-            <CTAButton text="Quero Validar Meu Tempo de Serviço" />
+            <CTAButton text="Quero Validar Meu Tempo de Serviço" onOpenForm={openForm} />
           </div>
         </Fade>
       </div>
@@ -665,7 +722,7 @@ function ComoFuncionaSection() {
 /* ═══════════════════════════════════════════
    PROCESSO EM 3 ETAPAS
    ═══════════════════════════════════════════ */
-function ProcessoSection() {
+function ProcessoSection({ openForm }: { openForm: () => void }) {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -765,7 +822,7 @@ function ProcessoSection() {
 
         <Fade delay={0.3}>
           <div className="text-center mt-12">
-            <CTAButton text="Quero analisar minha experiência" />
+            <CTAButton text="Quero analisar minha experiência" onOpenForm={openForm} />
           </div>
         </Fade>
 
@@ -837,7 +894,7 @@ function OrgaosSection() {
 /* ═══════════════════════════════════════════
    PROVA SOCIAL
    ═══════════════════════════════════════════ */
-function ProvaSection() {
+function ProvaSection({ openForm }: { openForm: () => void }) {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -918,7 +975,7 @@ function ProvaSection() {
 
         <Fade>
           <div className="text-center">
-            <CTAButton text="Quero ser o próximo técnico certificado" className="text-base py-5 px-10" />
+            <CTAButton text="Quero ser o próximo técnico certificado" className="text-base py-5 px-10" onOpenForm={openForm} />
           </div>
         </Fade>
       </div>
@@ -971,59 +1028,11 @@ function FAQSection() {
   );
 }
 
-/* ═══════════════════════════════════════════
-   FORM SECTION (Kommo)
-   ═══════════════════════════════════════════ */
-function FormSection() {
-  return (
-    <section id="kommo-form" className="py-20 md:py-28 bg-[#0068D4]">
-      <div className="max-w-3xl mx-auto px-4 md:px-8 text-center">
-        <Fade>
-          <span className="text-white/60 font-semibold text-xs tracking-widest uppercase">Comece agora</span>
-          <h2 className="text-3xl md:text-4xl font-black text-white mt-2 mb-4">Comece Sua Jornada Agora</h2>
-          <p className="text-white/70 text-lg mb-10 leading-relaxed">
-            Preencha o formulário abaixo e um de nossos consultores entrará em contato para analisar sua experiência e mostrar
-            como você pode conquistar seu diploma técnico reconhecido.
-          </p>
-        </Fade>
-
-        {/* Kommo Form — iframe de incorporação direto */}
-        <Fade delay={0.1}>
-          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl">
-            <iframe
-              src="https://forms.kommo.com/rczmxzx"
-              style={{ width: "100%", minHeight: 500, border: "none" }}
-              allow="clipboard-write"
-              title="Formulário de Matrícula EAD"
-            />
-          </div>
-        </Fade>
-
-        <Fade delay={0.15}>
-          <div className="mt-8">
-            <p className="text-white/50 text-sm mb-4">Ou fale conosco diretamente via WhatsApp:</p>
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-lg"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              📱 Avaliar minha experiência agora
-            </a>
-          </div>
-        </Fade>
-      </div>
-    </section>
-  );
-}
 
 /* ═══════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════ */
-function FooterSection() {
+function FooterSection({ openForm }: { openForm: () => void }) {
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
