@@ -882,11 +882,14 @@ function ProcessoSection({ openForm }: { openForm: () => void }) {
    ═══════════════════════════════════════════ */
 function OrgaosSection() {
   const orgaos = [
-    { sigla: "MEC", nome: "Ministério da Educação" },
-    { sigla: "SISTEC", nome: "Sistema de Informações" },
-    { sigla: "CFT", nome: "Conselho Federal Técnico" },
-    { sigla: "Administração", nome: "Conselho de Administração" },
-    { sigla: "MTE", nome: "Ministério do Trabalho" },
+    { sigla: "CFQ",    nome: "Conselho Federal de Química",           logo: "/images/logos/cfq.webp" },
+    { sigla: "CFT",    nome: "Conselho Federal Técnico",              logo: "/images/logos/cft.webp" },
+    { sigla: "CFTA",   nome: "Conselho Federal Técnico Agrícola",     logo: "/images/logos/cfta.webp" },
+    { sigla: "CRA",    nome: "Conselho Regional de Administração",    logo: "/images/logos/cra.webp" },
+    { sigla: "MEC",    nome: "Ministério da Educação",                logo: "/images/logos/mec.webp" },
+    { sigla: "SISTEC", nome: "Sistema Nacional de Informações da Ed.",logo: "/images/logos/sistec.webp" },
+    { sigla: "ABED",   nome: "Associação Brasileira de EaD",          logo: "/images/logos/abed.png" },
+    { sigla: "ABNT",   nome: "Associação Brasileira de Normas Técnicas", logo: "/images/logos/abnt.jpg" },
   ];
 
   return (
@@ -900,12 +903,21 @@ function OrgaosSection() {
             </p>
           </div>
         </Fade>
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
           {orgaos.map((o, i) => (
-            <Fade key={o.sigla} delay={i * 0.05}>
-              <div className="bg-white px-6 py-4 rounded-xl text-center min-w-[110px] hover:scale-105 transition-transform">
-                <div className="text-xl font-black text-[#0068D4]">{o.sigla}</div>
-                <div className="text-xs text-gray-400 mt-1">{o.nome}</div>
+            <Fade key={o.sigla} delay={i * 0.07}>
+              <div className="bg-white rounded-2xl px-6 py-5 flex flex-col items-center justify-center gap-2 min-w-[140px] max-w-[160px] hover:scale-105 hover:shadow-xl transition-all duration-300 cursor-default">
+                <img
+                  src={o.logo}
+                  alt={`Logo ${o.nome} — ${o.sigla}`}
+                  title={o.nome}
+                  width={120}
+                  height={52}
+                  loading="lazy"
+                  decoding="async"
+                  className="object-contain w-[120px] h-[52px]"
+                />
+                <span className="text-[10px] text-gray-400 text-center leading-tight">{o.nome}</span>
               </div>
             </Fade>
           ))}
