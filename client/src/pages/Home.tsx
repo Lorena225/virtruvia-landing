@@ -7,6 +7,9 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, useInView } from "framer-motion";
 
+/* ─── Base URL para GitHub Pages ─── */
+const BASE = import.meta.env.BASE_URL || "/";
+
 /* ─── Animation Helper ─── */
 function Fade({
   children,
@@ -217,7 +220,7 @@ function Header({ openForm }: { openForm: () => void }) {
           {/* Logo oficial */}
           <a href="https://matriculaead.com.br" target="_blank" rel="noopener noreferrer" className="flex items-center">
             <img
-              src="/images/logo_oficial.png"
+              src={`${BASE}images/logo_oficial.png`}
               alt="Matrícula EAD — Consultoria Educacional"
               className="h-12 w-auto"
               width={240}
@@ -281,7 +284,7 @@ function HeroSection({ openForm }: { openForm: () => void }) {
     <section
       className="relative min-h-[600px] md:min-h-[680px] flex items-center overflow-hidden"
       style={{
-        backgroundImage: "url('/images/hero_worker.jpg')", /* LCP image — preloaded in index.html */
+        backgroundImage: `url('${BASE}images/hero_worker.jpg')`, /* LCP image — preloaded in index.html */
         backgroundSize: "cover",
         backgroundPosition: "center right",
       }}
@@ -634,7 +637,7 @@ function VantagensSection({ openForm }: { openForm: () => void }) {
           <div className="mt-20 grid md:grid-cols-2 gap-12 items-center">
             <div>
               <img
-                src="/images/worker_team.jpg"
+                src={`${BASE}images/worker_team.jpg`}
                 alt="Equipe de trabalhadores brasileiros com equipamentos de segurança em obra de construção civil"
                 className="rounded-2xl shadow-xl w-full object-cover h-80"
               />
@@ -865,7 +868,7 @@ function ProcessoSection({ openForm }: { openForm: () => void }) {
             </div>
             <div>
               <img
-                src="/images/worker_online.jpg"
+                src={`${BASE}images/worker_online.jpg`}
                 alt="Profissional brasileiro estudando online para obter diploma técnico por competência"
                 className="rounded-2xl shadow-xl w-full object-cover h-72"
               />
@@ -882,12 +885,12 @@ function ProcessoSection({ openForm }: { openForm: () => void }) {
    ═══════════════════════════════════════════ */
 function OrgaosSection() {
   const orgaos = [
-    { sigla: "CFQ",    nome: "Conselho Federal de Química",            logo: "/images/logos/cfq.webp",    logo2x: "/images/logos/cfq@2x.webp" },
-    { sigla: "CFT",    nome: "Conselho Federal Técnico",               logo: "/images/logos/cft.webp",    logo2x: "/images/logos/cft@2x.webp" },
-    { sigla: "CFTA",   nome: "Conselho Federal Técnico Agrícola",      logo: "/images/logos/cfta.webp",   logo2x: "/images/logos/cfta@2x.webp" },
-    { sigla: "CRA",    nome: "Conselho Regional de Administração",     logo: "/images/logos/cra.webp",    logo2x: "/images/logos/cra@2x.webp" },
-    { sigla: "MEC",    nome: "Ministério da Educação",                 logo: "/images/logos/mec.webp",    logo2x: "/images/logos/mec@2x.webp" },
-    { sigla: "SISTEC", nome: "Sistema Nacional de Informações da Ed.", logo: "/images/logos/sistec.webp", logo2x: "/images/logos/sistec@2x.webp" },
+    { sigla: "CFQ",    nome: "Conselho Federal de Química",            logo: `${BASE}images/logos/cfq.webp`,    logo2x: `${BASE}images/logos/cfq@2x.webp` },
+    { sigla: "CFT",    nome: "Conselho Federal Técnico",               logo: `${BASE}images/logos/cft.webp`,    logo2x: `${BASE}images/logos/cft@2x.webp` },
+    { sigla: "CFTA",   nome: "Conselho Federal Técnico Agrícola",      logo: `${BASE}images/logos/cfta.webp`,   logo2x: `${BASE}images/logos/cfta@2x.webp` },
+    { sigla: "CRA",    nome: "Conselho Regional de Administração",     logo: `${BASE}images/logos/cra.webp`,    logo2x: `${BASE}images/logos/cra@2x.webp` },
+    { sigla: "MEC",    nome: "Ministério da Educação",                 logo: `${BASE}images/logos/mec.webp`,    logo2x: `${BASE}images/logos/mec@2x.webp` },
+    { sigla: "SISTEC", nome: "Sistema Nacional de Informações da Ed.", logo: `${BASE}images/logos/sistec.webp`, logo2x: `${BASE}images/logos/sistec@2x.webp` },
   ];
 
   return (
@@ -995,14 +998,14 @@ function ProvaSection({ openForm }: { openForm: () => void }) {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-14">
             <div>
               <img
-                src="/images/worker_diploma.jpg"
+                src={`${BASE}images/worker_diploma.jpg`}
                 alt="Trabalhador brasileiro segurando diploma técnico reconhecido pelo MEC"
                 className="rounded-2xl shadow-xl w-full object-cover h-80"
               />
             </div>
             <div>
               <img
-                src="/images/female_worker.jpg"
+                src={`${BASE}images/female_worker.jpg`}
                 alt="Profissional brasileira com diploma técnico conquistado através da certificação por competência"
                 className="rounded-2xl shadow-xl w-full object-cover h-80"
               />
@@ -1078,7 +1081,7 @@ function FooterSection({ openForm }: { openForm: () => void }) {
           <div>
             <div className="mb-4">
               <img
-                src="/images/logo_oficial.png"
+                src={`${BASE}images/logo_oficial.png`}
                 alt="Matrícula EAD — Consultoria Educacional em Certificação Técnica"
                 className="h-10 w-auto brightness-0 invert"
                 width={200}
